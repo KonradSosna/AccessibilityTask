@@ -1,12 +1,10 @@
+import styled from '@emotion/styled';
 import { Grid, Typography } from '@mui/material';
-import styled from 'styled-components';
 
-const StyledTypography = styled(Typography)({
-	fontWeight: 'bold',
-	fontSize: '24px',
-	fontFamily:
-		'Graphik, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
-});
+const StyledTypography = styled(Typography)`
+	font-weight: 700;
+	font-size: 26px;
+`;
 
 function Logo() {
 	return (
