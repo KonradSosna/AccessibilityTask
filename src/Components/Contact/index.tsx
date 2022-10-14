@@ -6,6 +6,7 @@ function Contact() {
 	return (
 		<Container
 			direction="column"
+			devider
 			sx={{
 				justifyContent: 'center',
 			}}

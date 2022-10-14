@@ -19,6 +19,10 @@ const FormButton: FC<TButtonProps> = ({ text, variant, sx }) => {
 				textTransform: 'capitalize',
 				fontSize: '15px',
 				...sx,
+
+				'&:hover': {
+					backgroundColor: 'gray',
+				},
 			}}
 		>
 			{text}

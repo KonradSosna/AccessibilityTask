@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
 import { Box, Grid, List, ListItemButton } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Logo from './Logo';
 
-const StyledLink = styled(Link)({
+export const StyledLink = styled(Link)({
 	color: 'black',
 	textDecoration: 'none',
 });
@@ -12,6 +12,10 @@ const StyledLink = styled(Link)({
 const Navbar = () => {
 	const location = useLocation();
 	const [selectedIndex, setSelectedIndex] = useState(location.pathname);
+
+	useEffect(() => {
+		setSelectedIndex(location.pathname);
+	}, [location]);
 
 	const handleListItemClick = (
 		_event: React.MouseEvent<HTMLDivElement, MouseEvent>,
@@ -51,6 +55,7 @@ const Navbar = () => {
 					>
 						<StyledLink to="/">
 							<ListItemButton
+								sx={{ fontWeight: selectedIndex === '/' ? 600 : 400 }}
 								selected={selectedIndex === '/'}
 								onClick={(event) => handleListItemClick(event, '/')}
 							>
@@ -60,6 +65,7 @@ const Navbar = () => {
 
 						<StyledLink to="/about-us">
 							<ListItemButton
+								sx={{ fontWeight: selectedIndex === '/about-us' ? 600 : 400 }}
 								selected={selectedIndex === '/about-us'}
 								onClick={(event) => handleListItemClick(event, '/about-us')}
 							>
@@ -69,6 +75,9 @@ const Navbar = () => {
 
 						<StyledLink to="/claim-report">
 							<ListItemButton
+								sx={{
+									fontWeight: selectedIndex === '/claim-report' ? 600 : 400,
+								}}
 								selected={selectedIndex === '/claim-report'}
 								onClick={(event) => handleListItemClick(event, '/claim-report')}
 							>
@@ -78,6 +87,7 @@ const Navbar = () => {
 
 						<StyledLink to="/contact">
 							<ListItemButton
+								sx={{ fontWeight: selectedIndex === '/contact' ? 600 : 400 }}
 								selected={selectedIndex === '/contact'}
 								onClick={(event) => handleListItemClick(event, '/contact')}
 							>
