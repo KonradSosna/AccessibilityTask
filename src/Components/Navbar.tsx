@@ -1,7 +1,7 @@
+import styled from '@emotion/styled';
 import { Box, Grid, List, ListItemButton } from '@mui/material';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import { Link, useLocation } from 'react-router-dom';
 import Logo from './Logo';
 
 const StyledLink = styled(Link)({
@@ -10,11 +10,12 @@ const StyledLink = styled(Link)({
 });
 
 const Navbar = () => {
-	const [selectedIndex, setSelectedIndex] = useState(1);
+	const location = useLocation();
+	const [selectedIndex, setSelectedIndex] = useState(location.pathname);
 
 	const handleListItemClick = (
-		event: React.MouseEvent<HTMLDivElement, MouseEvent>,
-		index: number
+		_event: React.MouseEvent<HTMLDivElement, MouseEvent>,
+		index: string
 	) => {
 		setSelectedIndex(index);
 	};
@@ -50,8 +51,8 @@ const Navbar = () => {
 					>
 						<StyledLink to="/">
 							<ListItemButton
-								selected={selectedIndex === 0}
-								onClick={(event) => handleListItemClick(event, 0)}
+								selected={selectedIndex === '/'}
+								onClick={(event) => handleListItemClick(event, '/')}
 							>
 								Insurance
 							</ListItemButton>
@@ -59,8 +60,8 @@ const Navbar = () => {
 
 						<StyledLink to="/about-us">
 							<ListItemButton
-								selected={selectedIndex === 1}
-								onClick={(event) => handleListItemClick(event, 1)}
+								selected={selectedIndex === '/about-us'}
+								onClick={(event) => handleListItemClick(event, '/about-us')}
 							>
 								About us
 							</ListItemButton>
@@ -68,8 +69,8 @@ const Navbar = () => {
 
 						<StyledLink to="/claim-report">
 							<ListItemButton
-								selected={selectedIndex === 2}
-								onClick={(event) => handleListItemClick(event, 2)}
+								selected={selectedIndex === '/claim-report'}
+								onClick={(event) => handleListItemClick(event, '/claim-report')}
 							>
 								Claim report
 							</ListItemButton>
@@ -77,8 +78,8 @@ const Navbar = () => {
 
 						<StyledLink to="/contact">
 							<ListItemButton
-								selected={selectedIndex === 3}
-								onClick={(event) => handleListItemClick(event, 3)}
+								selected={selectedIndex === '/contact'}
+								onClick={(event) => handleListItemClick(event, '/contact')}
 							>
 								Contact
 							</ListItemButton>

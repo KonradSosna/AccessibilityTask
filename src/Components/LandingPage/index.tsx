@@ -1,51 +1,17 @@
-import { Button, Grid, List, ListItem, Typography } from '@mui/material';
-
-const Box = ({ text }: { text: string }) => {
-	return (
-		<Grid item>
-			<Grid
-				container
-				direction="column"
-				gap={4}
-				xs={3}
-				justifyContent="space-evenly"
-			>
-				<Grid
-					item
-					sx={{
-						width: '250px',
-						height: '250px',
-						backgroundColor: 'black',
-					}}
-				></Grid>
-				<Grid
-					item
-					sx={{
-						textTransform: 'capitalize',
-						fontSize: '20px',
-						flexWrap: 'wrap',
-					}}
-				>
-					{text}
-				</Grid>
-			</Grid>
-		</Grid>
-	);
-};
+import { Grid, Typography } from '@mui/material';
+import Box from './Partials/Box';
+import Container from './Partials/Container';
+import FormButton from './Partials/Button';
+import FormList from './Partials/List';
 
 const LandingPage = () => {
 	return (
 		<>
-			<Grid
-				container
+			<Container
 				direction="column"
-				gap={3}
 				sx={{
-					height: '700px',
 					backgroundColor: '#F2F2F2',
-					width: '100%',
 					justifyContent: 'center',
-					alignItems: 'center',
 				}}
 			>
 				<Grid item>
@@ -60,32 +26,11 @@ const LandingPage = () => {
 					</Typography>
 				</Grid>
 				<Grid item>
-					<Button
-						variant="contained"
-						sx={{
-							backgroundColor: 'black',
-							width: '200px',
-							height: '50px',
-							textTransform: 'capitalize',
-							fontSize: '15px',
-						}}
-					>
-						order now
-					</Button>
+					<FormButton text="order now" />
 				</Grid>
-			</Grid>
+			</Container>
 
-			<Grid
-				container
-				direction="row"
-				gap={3}
-				sx={{
-					height: '700px',
-					width: '100%',
-					justifyContent: 'space-evenly',
-					alignItems: 'center',
-				}}
-			>
+			<Container direction="row">
 				<Grid
 					item
 					sx={{ width: '470px', height: '360px', border: '1px solid black' }}
@@ -109,33 +54,13 @@ const LandingPage = () => {
 							</Typography>
 						</Grid>
 						<Grid item>
-							<List sx={{ fontSize: '24px' }}>
-								<ListItem sx={{ listStyleType: 'disc', display: 'list-item' }}>
-									List item #1
-								</ListItem>
-								<ListItem sx={{ listStyleType: 'disc', display: 'list-item' }}>
-									List item #2
-								</ListItem>
-								<ListItem sx={{ listStyleType: 'disc', display: 'list-item' }}>
-									List item #3
-								</ListItem>
-							</List>
+							<FormList />
 						</Grid>
 					</Grid>
 				</Grid>
-			</Grid>
+			</Container>
 
-			<Grid
-				container
-				direction="row"
-				gap={3}
-				sx={{
-					height: '700px',
-					width: '100%',
-					justifyContent: 'space-evenly',
-					alignItems: 'center',
-				}}
-			>
+			<Container direction="row">
 				<Grid item>
 					<Typography
 						fontSize={22}
@@ -160,39 +85,95 @@ const LandingPage = () => {
 					item
 					sx={{ width: '470px', height: '360px', border: '1px solid black' }}
 				></Grid>
-			</Grid>
+			</Container>
 
-			<Grid
-				container
+			<Container
 				direction="column"
-				gap={2}
 				sx={{
-					width: '100%',
 					justifyContent: 'space-evenly',
-					alignItems: 'center',
 				}}
 			>
 				<Grid item>
-					<Typography
-						fontSize={30}
-						fontWeight={600}
-						maxWidth="500px"
-						textTransform="capitalize"
-						marginBottom={5}
-					>
+					<Typography fontSize={30} fontWeight={600} textTransform="capitalize">
 						Explore our travel topics
 					</Typography>
 				</Grid>
 
 				<Grid item>
-					<Grid container direction="row" gap={4}>
+					<Grid container direction="row">
 						<Box text={'renting vacation homes'} />
 						<Box text={'trends & predictions'} />
 						<Box text={'popular travel destinations for 2021'} />
 						<Box text={'popular gear for safe travels in 2021'} />
 					</Grid>
 				</Grid>
-			</Grid>
+			</Container>
+
+			<Container
+				direction="column"
+				sx={{
+					backgroundColor: '#F2F2F2',
+					justifyContent: 'center',
+					height: '400px',
+				}}
+			>
+				<Grid item>
+					<Typography fontSize={24} fontWeight={500} textTransform="capitalize">
+						"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illo quam
+						harum itaque soluta?""
+					</Typography>
+				</Grid>
+				<Grid
+					item
+					sx={{
+						backgroundColor: 'black',
+						width: '40px',
+						height: '40px',
+						borderRadius: '50px',
+					}}
+				></Grid>
+				<Grid item>
+					<Typography fontSize={14} fontWeight={500} maxWidth="700px">
+						Donald Duck, CEO of Disney
+					</Typography>
+				</Grid>
+			</Container>
+
+			<Container direction="row" sx={{ height: '250px' }}>
+				<Grid item>
+					<Typography
+						fontSize={28}
+						fontWeight={600}
+						maxWidth="500px"
+						m="10px 0"
+					>
+						Are you looking for an insurance?
+					</Typography>
+
+					<Typography fontSize={20} fontWeight={500} maxWidth="500px">
+						Contact us to order now
+					</Typography>
+				</Grid>
+
+				<Grid item>
+					<Grid container spacing={2}>
+						<Grid item>
+							<FormButton
+								text="call us"
+								variant="contained"
+								sx={{
+									backgroundColor: 'unset',
+									color: 'black',
+									border: '1px solid black',
+								}}
+							/>
+						</Grid>
+						<Grid item>
+							<FormButton text="send a message" />
+						</Grid>
+					</Grid>
+				</Grid>
+			</Container>
 		</>
 	);
 };

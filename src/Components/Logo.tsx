@@ -3,7 +3,7 @@ import { Grid, Typography } from '@mui/material';
 
 const StyledTypography = styled(Typography)`
 	font-weight: 700;
-	font-size: 26px;
+	font-size: 25px;
 `;
 
 function Logo() {
@@ -12,9 +12,9 @@ function Logo() {
 			<StyledTypography>The Insurer</StyledTypography>
 			<div
 				style={{
-					backgroundColor: 'gray',
-					width: '40px',
-					height: '40px',
+					backgroundColor: '#c4c4c4',
+					width: '48px',
+					height: '48px',
 					borderRadius: '50px',
 				}}
 			></div>

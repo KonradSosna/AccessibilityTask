@@ -1,6 +1,6 @@
 import Footer from './Components/Footer';
 import { Routes, Route } from 'react-router-dom';
-import LandingPage from './Components/LandingPage/LandingPage';
+import LandingPage from './Components/LandingPage';
 import AboutUs from './Components/AboutUs';
 import ClaimReport from './Components/ClaimReport';
 import Contact from './Components/Contact';
