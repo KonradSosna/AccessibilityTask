@@ -6,11 +6,13 @@ type TButtonProps = {
 	text: string;
 	variant?: 'contained' | 'outlined' | 'text';
 	sx?: CSSProperties;
+	onClick?: (v: any) => void;
 };
 
-const FormButton: FC<TButtonProps> = ({ text, variant, sx }) => {
+const FormButton: FC<TButtonProps> = ({ text, variant, sx, onClick }) => {
 	return (
 		<Button
+			onClick={onClick}
 			variant={variant ? variant : 'contained'}
 			sx={{
 				backgroundColor: 'black',
