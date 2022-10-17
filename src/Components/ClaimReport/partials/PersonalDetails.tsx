@@ -1,25 +1,44 @@
 import styled from '@emotion/styled';
-import { Grid } from '@mui/material';
-import { Dispatch, FC, useState } from 'react';
+import { Grid, TextField } from '@mui/material';
+import { Dispatch, FC } from 'react';
 import FormButton from '../../LandingPage/Partials/Button';
+
+export const Styledlabel = styled.label`
+	font-size: 18px;
+	font-weight: 600;
+`;
 
 type TPersonalDetailsProps = {
 	setValue: Dispatch<React.SetStateAction<number>>;
+	firstName?: string;
+	setFirstName: Dispatch<React.SetStateAction<string>>;
+	lastName?: string;
+	setLastName: Dispatch<React.SetStateAction<string>>;
+	birthday?: string;
+	setBirthday: Dispatch<React.SetStateAction<string>>;
+	email?: string;
+	setEmail: Dispatch<React.SetStateAction<string>>;
+	phoneNumber?: number;
+	setPhoneNumber: Dispatch<React.SetStateAction<number | undefined>>;
+	policyNumber?: number;
+	setPolicyNumber: Dispatch<React.SetStateAction<number | undefined>>;
 };
 
-const PersonalDetails: FC<TPersonalDetailsProps> = ({ setValue }) => {
-	const [firstName, setFirstName] = useState('');
-	const [lastName, setLastName] = useState('');
-	const [birthday, setBirthday] = useState('');
-	const [phoneNumber, setPhoneNumber] = useState('');
-	const [email, setEmail] = useState('');
-	const [policyNumber, setPolicyNumber] = useState('');
-
-	const Styledlabel = styled.label`
-		font-size: 18px;
-		font-weight: 600;
-	`;
-
+const PersonalDetails: FC<TPersonalDetailsProps> = ({
+	setValue,
+	firstName,
+	setFirstName,
+	lastName,
+	setLastName,
+	birthday,
+	setBirthday,
+	email,
+	setEmail,
+	phoneNumber,
+	setPhoneNumber,
+	policyNumber,
+	setPolicyNumber,
+}) => {
 	return (
 		<Grid container direction="column" spacing={4} width="100%">
 			<Grid item>
@@ -28,7 +47,7 @@ const PersonalDetails: FC<TPersonalDetailsProps> = ({ setValue }) => {
 						<Styledlabel htmlFor="firstName">First name</Styledlabel>
 					</Grid>
 					<Grid item>
-						<input
+						<TextField
 							title="firstName"
 							type="text"
 							value={firstName}
@@ -45,7 +64,7 @@ const PersonalDetails: FC<TPersonalDetailsProps> = ({ setValue }) => {
 						<Styledlabel htmlFor="lastName">Last name</Styledlabel>
 					</Grid>
 					<Grid item>
-						<input
+						<TextField
 							title="lastName"
 							type="text"
 							value={lastName}
@@ -62,10 +81,12 @@ const PersonalDetails: FC<TPersonalDetailsProps> = ({ setValue }) => {
 						<Styledlabel htmlFor="birthday">Birthday</Styledlabel>
 					</Grid>
 					<Grid item>
-						<input
-							title="birthday"
+						<TextField
 							value={birthday}
-							style={{ width: '100%', height: '40px' }}
+							title="birthday"
+							fullWidth
+							id="date"
+							type="date"
 							onChange={(e) => setBirthday(e.target.value)}
 						/>
 					</Grid>
@@ -78,12 +99,13 @@ const PersonalDetails: FC<TPersonalDetailsProps> = ({ setValue }) => {
 						<Styledlabel htmlFor="phoneNumber">Phone number</Styledlabel>
 					</Grid>
 					<Grid item>
-						<input
+						<TextField
 							title="phoneNumber"
 							type="number"
 							value={phoneNumber}
 							style={{ width: '100%', height: '40px' }}
-							onChange={(e) => setPhoneNumber(e.target.value)}
+							onChange={(e) => setPhoneNumber(Number(e.target.value))}
+							InputProps={{ inputProps: { max: 999999999 } }}
 						/>
 					</Grid>
 				</Grid>
@@ -95,7 +117,7 @@ const PersonalDetails: FC<TPersonalDetailsProps> = ({ setValue }) => {
 						<Styledlabel htmlFor="email">Email</Styledlabel>
 					</Grid>
 					<Grid item>
-						<input
+						<TextField
 							title="email"
 							type="text"
 							value={email}
@@ -112,12 +134,12 @@ const PersonalDetails: FC<TPersonalDetailsProps> = ({ setValue }) => {
 						<Styledlabel htmlFor="policyNumber">Policy number</Styledlabel>
 					</Grid>
 					<Grid item>
-						<input
+						<TextField
 							title="policyNumber"
 							type="number"
 							value={policyNumber}
 							style={{ width: '100%', height: '40px' }}
-							onChange={(e) => setPolicyNumber(e.target.value)}
+							onChange={(e) => setPolicyNumber(Number(e.target.value))}
 						/>
 					</Grid>
 				</Grid>

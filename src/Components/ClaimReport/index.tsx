@@ -1,7 +1,7 @@
 import { Box, Grid, styled, Tab, Tabs, Typography } from '@mui/material';
 import { memo, useState } from 'react';
 import Container from '../LandingPage/Partials/Container';
-import ExpenseReport from './partials/ExpenseReport';
+import ExpenseReport, { TExpenseItem } from './partials/ExpenseReport';
 import IncidentDetails from './partials/IncidentDetails';
 import PersonalDetails from './partials/PersonalDetails';
 
@@ -38,7 +38,7 @@ function TabPanel(props: TabPanelProps) {
 		>
 			{value === index && (
 				<Box sx={{ p: 3 }}>
-					<Typography>{children}</Typography>
+					<div>{children}</div>
 				</Box>
 			)}
 		</div>
@@ -54,12 +54,52 @@ function a11yProps(index: number) {
 
 function Claimreport() {
 	const [value, setValue] = useState(0);
+	const [loading, setLoading] = useState(false);
+
+	//Use context to pass the value to the child components
+	const [firstName, setFirstName] = useState('');
+	const [lastName, setLastName] = useState('');
+	const [birthday, setBirthday] = useState('');
+	const [phoneNumber, setPhoneNumber] = useState<number>();
+	const [email, setEmail] = useState('');
+	const [policyNumber, setPolicyNumber] = useState<number>();
+
+	const [travelPurpose, setTravelPurpose] = useState('tourism');
+	const [country, setCountry] = useState('');
+	const [address, setAddress] = useState('');
+	const [date, setDate] = useState('');
+	const [description, setDescription] = useState('');
+
+	const [expenseArr, setExpenseArr] = useState<TExpenseItem[]>(
+		JSON.parse(localStorage.getItem('expenseArr') || '')
+	);
 
 	const handleChange = (event: React.SyntheticEvent, newValue: number) => {
 		setValue(newValue);
 	};
 
-	const submitForm = () => {};
+	const submitForm = async () => {
+		const reportObj = {
+			firstName,
+			lastName,
+			birthday,
+			phoneNumber,
+			email,
+			policyNumber,
+			travelPurpose,
+			country,
+			address,
+			date,
+			description,
+			expenseArr,
+		};
+
+		await setLoading(true);
+		await setTimeout(() => {
+			alert(JSON.stringify(reportObj));
+			setLoading(false);
+		}, 2000);
+	};
 
 	return (
 		<Container devider sx={{ height: '100%' }}>
@@ -98,13 +138,45 @@ function Claimreport() {
 				<Grid item style={{ width: '100%', maxWidth: '850px' }}>
 					<form onSubmit={submitForm}>
 						<TabPanel value={value} index={0}>
-							<PersonalDetails setValue={setValue} />
+							<PersonalDetails
+								setValue={setValue}
+								firstName={firstName}
+								setFirstName={setFirstName}
+								lastName={lastName}
+								setLastName={setLastName}
+								birthday={birthday}
+								setBirthday={setBirthday}
+								phoneNumber={phoneNumber}
+								setPhoneNumber={setPhoneNumber}
+								email={email}
+								setEmail={setEmail}
+								policyNumber={policyNumber}
+								setPolicyNumber={setPolicyNumber}
+							/>
 						</TabPanel>
 						<TabPanel value={value} index={1}>
-							<IncidentDetails setValue={setValue} />
+							<IncidentDetails
+								setValue={setValue}
+								travelPurpose={travelPurpose}
+								setTravelPurpose={setTravelPurpose}
+								country={country}
+								setCountry={setCountry}
+								address={address}
+								setAddress={setAddress}
+								date={date}
+								setDate={setDate}
+								description={description}
+								setDescription={setDescription}
+							/>
 						</TabPanel>
 						<TabPanel value={value} index={2}>
-							<ExpenseReport />
+							<ExpenseReport
+								setValue={setValue}
+								submitForm={submitForm}
+								expenseArr={expenseArr}
+								setExpenseArr={setExpenseArr}
+								loading={loading}
+							/>
 						</TabPanel>
 					</form>
 				</Grid>
