@@ -36,9 +36,11 @@ function Footer() {
 								cursor: 'pointer',
 							}}
 						>
-							<Typography fontWeight={600} margin="10px 15px">
-								about us
-							</Typography>
+							<ListItem>
+								<Typography fontWeight={600} margin="10px 0">
+									about us
+								</Typography>
+							</ListItem>
 							<ListItem>newsroom</ListItem>
 							<ListItem>caareers</ListItem>
 							<ListItem>our story</ListItem>
@@ -56,9 +58,11 @@ function Footer() {
 								width: '170px',
 							}}
 						>
-							<Typography fontWeight={600} margin="10px 15px">
-								procusts
-							</Typography>
+							<ListItem>
+								<Typography fontWeight={600} margin="10px 0">
+									procusts
+								</Typography>
+							</ListItem>
 							<ListItem>vacation / holidays</ListItem>
 							<ListItem>student / scholar</ListItem>
 							<ListItem>mission</ListItem>
@@ -75,9 +79,11 @@ function Footer() {
 								cursor: 'pointer',
 							}}
 						>
-							<Typography fontWeight={600} margin="10px 15px">
-								member
-							</Typography>
+							<ListItem>
+								<Typography fontWeight={600} margin="10px 0">
+									member
+								</Typography>
+							</ListItem>
 							<ListItem>forms library</ListItem>
 							<ListItem>find a doctor</ListItem>
 							<ListItem>renew policy</ListItem>

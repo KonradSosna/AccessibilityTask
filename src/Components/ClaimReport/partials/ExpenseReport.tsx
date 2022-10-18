@@ -6,28 +6,30 @@ import { Styledlabel } from './PersonalDetails';
 import ModeIcon from '@mui/icons-material/Mode';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import ReportModal from './ReportModal';
-import LoadingButton from '@mui/lab/LoadingButton';
-import SaveIcon from '@mui/icons-material/Save';
+import { useForm } from 'react-hook-form';
 
 type TExpenseReportProps = {
+	register: ReturnType<typeof useForm>['register'];
 	setValue: Dispatch<React.SetStateAction<number>>;
-	submitForm: () => void;
 	expenseArr: TExpenseItem[];
 	setExpenseArr: Dispatch<React.SetStateAction<TExpenseItem[]>>;
 	loading: boolean;
+	submitForm: (v: any) => void;
 };
 
 export type TExpenseItem = { id: string; expense: string; amount: string };
 
 const ExpenseReport: FC<TExpenseReportProps> = ({
+	register,
 	setValue,
-	submitForm,
 	expenseArr,
 	setExpenseArr,
 	loading,
+	submitForm,
 }) => {
 	const [open, setOpen] = useState(false);
-	const [show, setShow] = useState(false);
+	const [expenseAdded, setExpenseAdded] = useState(false);
+	const [expenseDeleted, setExpenseDeleted] = useState(false);
 
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => {
@@ -41,9 +43,16 @@ const ExpenseReport: FC<TExpenseReportProps> = ({
 	const handleDelete = (id: string) => {
 		const newArr = expenseArr.filter((item) => item.id !== id);
 		setExpenseArr(newArr);
+		setExpenseDeleted(true);
 	};
 
-	console.log(loading);
+	// function a11yProps(index: string) {
+	// 	return {
+	// 		id: `expense-list-item-${index}`,
+	// 		'aria-controls': `expense-list-item-${index}`,
+	// 		'aria-label': `expense-list-item-${index}`,
+	// 	};
+	// }
 
 	return (
 		<Grid
@@ -78,8 +87,12 @@ const ExpenseReport: FC<TExpenseReportProps> = ({
 									<ExpenseButton
 										icon={<DeleteOutlineIcon />}
 										onClick={() => handleDelete(expense.id)}
+										ariaLabel={`delete-item-${expense.id}`}
 									/>
-									<ExpenseButton icon={<ModeIcon />} />
+									<ExpenseButton
+										icon={<ModeIcon />}
+										ariaLabel={`edit-item-${expense.id}`}
+									/>
 								</Grid>
 							</Grid>
 						</Grid>
@@ -116,18 +129,18 @@ const ExpenseReport: FC<TExpenseReportProps> = ({
 					handleClose={handleClose}
 					aria-labelledby="modal-modal-title"
 					aria-describedby="modal-modal-description"
-					setShow={setShow}
+					setExpenseAdded={setExpenseAdded}
 				/>
 			)}
 
-			{show && (
+			{expenseAdded && (
 				<Snackbar
-					open={show}
+					open={expenseAdded}
 					autoHideDuration={6000}
-					onClose={() => setShow(false)}
+					onClose={() => setExpenseAdded(false)}
 				>
 					<Alert
-						onClose={() => setShow(false)}
+						onClose={() => setExpenseAdded(false)}
 						severity="success"
 						sx={{ width: '100%' }}
 					>
@@ -135,9 +148,25 @@ const ExpenseReport: FC<TExpenseReportProps> = ({
 					</Alert>
 				</Snackbar>
 			)}
+			{expenseDeleted && (
+				<Snackbar
+					open={expenseDeleted}
+					autoHideDuration={6000}
+					onClose={() => setExpenseDeleted(false)}
+				>
+					<Alert
+						onClose={() => setExpenseDeleted(false)}
+						severity="success"
+						sx={{ width: '100%' }}
+					>
+						Expense deleted
+					</Alert>
+				</Snackbar>
+			)}
 
 			<Grid container marginTop="50px" justifyContent="space-between">
 				<FormButton
+					loading={loading}
 					variant="contained"
 					sx={{
 						backgroundColor: 'unset',
@@ -148,16 +177,12 @@ const ExpenseReport: FC<TExpenseReportProps> = ({
 					text="return"
 					onClick={() => setValue(1)}
 				/>
-				<FormButton text="submit" onClick={submitForm} />
-				<LoadingButton
+				<FormButton
+					text="submit"
+					type="submit"
 					loading={loading}
-					loadingPosition="start"
-					startIcon={<SaveIcon />}
-					variant="outlined"
-					onClick={submitForm}
-				>
-					Save111
-				</LoadingButton>
+					onClick={() => submitForm(3)}
+				/>
 			</Grid>
 		</Grid>
 	);

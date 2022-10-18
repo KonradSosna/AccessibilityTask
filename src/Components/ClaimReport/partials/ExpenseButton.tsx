@@ -6,12 +6,19 @@ type TButtonProps = {
 	icon?: any;
 	variant?: 'contained' | 'outlined' | 'text';
 	onClick?: (v: any) => void;
+	ariaLabel?: string;
 };
 
-const ExpenseButton: FC<TButtonProps> = ({ icon, variant, onClick }) => {
+const ExpenseButton: FC<TButtonProps> = ({
+	icon,
+	variant,
+	onClick,
+	ariaLabel,
+}) => {
 	return (
 		<Avatar>
 			<Button
+				aria-label={ariaLabel}
 				onClick={onClick}
 				variant={variant ? variant : 'contained'}
 				sx={{

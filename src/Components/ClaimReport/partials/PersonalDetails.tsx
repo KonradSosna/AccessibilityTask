@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { Grid, TextField } from '@mui/material';
 import { Dispatch, FC } from 'react';
+import { useForm } from 'react-hook-form';
 import FormButton from '../../LandingPage/Partials/Button';
 
 export const Styledlabel = styled.label`
@@ -10,49 +11,30 @@ export const Styledlabel = styled.label`
 
 type TPersonalDetailsProps = {
 	setValue: Dispatch<React.SetStateAction<number>>;
-	firstName?: string;
-	setFirstName: Dispatch<React.SetStateAction<string>>;
-	lastName?: string;
-	setLastName: Dispatch<React.SetStateAction<string>>;
-	birthday?: string;
-	setBirthday: Dispatch<React.SetStateAction<string>>;
-	email?: string;
-	setEmail: Dispatch<React.SetStateAction<string>>;
-	phoneNumber?: number;
-	setPhoneNumber: Dispatch<React.SetStateAction<number | undefined>>;
-	policyNumber?: number;
-	setPolicyNumber: Dispatch<React.SetStateAction<number | undefined>>;
+	register: ReturnType<typeof useForm>['register'];
+	submitForm: (v: any) => void;
+	errors: any;
 };
 
 const PersonalDetails: FC<TPersonalDetailsProps> = ({
 	setValue,
-	firstName,
-	setFirstName,
-	lastName,
-	setLastName,
-	birthday,
-	setBirthday,
-	email,
-	setEmail,
-	phoneNumber,
-	setPhoneNumber,
-	policyNumber,
-	setPolicyNumber,
+	register,
+	submitForm,
+	errors,
 }) => {
 	return (
-		<Grid container direction="column" spacing={4} width="100%">
+		<Grid container direction="column" spacing={6} width="100%">
 			<Grid item>
 				<Grid container direction="column" spacing={1}>
 					<Grid item>
-						<Styledlabel htmlFor="firstName">First name</Styledlabel>
-					</Grid>
-					<Grid item>
 						<TextField
+							{...register('firstName', { required: true })}
 							title="firstName"
 							type="text"
-							value={firstName}
 							style={{ width: '100%', height: '40px' }}
-							onChange={(e) => setFirstName(e.target.value)}
+							error={!!errors.firstName}
+							helperText={errors.firstName && 'First name is required'}
+							label="First name"
 						/>
 					</Grid>
 				</Grid>
@@ -61,15 +43,14 @@ const PersonalDetails: FC<TPersonalDetailsProps> = ({
 			<Grid item>
 				<Grid container direction="column" spacing={1}>
 					<Grid item>
-						<Styledlabel htmlFor="lastName">Last name</Styledlabel>
-					</Grid>
-					<Grid item>
 						<TextField
+							{...register('lastName', { required: true })}
 							title="lastName"
 							type="text"
-							value={lastName}
 							style={{ width: '100%', height: '40px' }}
-							onChange={(e) => setLastName(e.target.value)}
+							error={!!errors.lastName}
+							helperText={errors.lastName && 'Last name is required'}
+							label="Last name"
 						/>
 					</Grid>
 				</Grid>
@@ -78,16 +59,18 @@ const PersonalDetails: FC<TPersonalDetailsProps> = ({
 			<Grid item>
 				<Grid container direction="column" spacing={1}>
 					<Grid item>
-						<Styledlabel htmlFor="birthday">Birthday</Styledlabel>
-					</Grid>
-					<Grid item>
 						<TextField
-							value={birthday}
+							{...register('birthday', { required: true })}
 							title="birthday"
 							fullWidth
 							id="date"
 							type="date"
-							onChange={(e) => setBirthday(e.target.value)}
+							error={!!errors.birthday}
+							helperText={errors.birthday && 'Birthday is required'}
+							label="Birthday"
+							InputLabelProps={{
+								shrink: true,
+							}}
 						/>
 					</Grid>
 				</Grid>
@@ -96,16 +79,15 @@ const PersonalDetails: FC<TPersonalDetailsProps> = ({
 			<Grid item>
 				<Grid container direction="column" spacing={1}>
 					<Grid item>
-						<Styledlabel htmlFor="phoneNumber">Phone number</Styledlabel>
-					</Grid>
-					<Grid item>
 						<TextField
+							{...register('phoneNumber', { required: true })}
 							title="phoneNumber"
 							type="number"
-							value={phoneNumber}
 							style={{ width: '100%', height: '40px' }}
-							onChange={(e) => setPhoneNumber(Number(e.target.value))}
 							InputProps={{ inputProps: { max: 999999999 } }}
+							error={!!errors.phoneNumber}
+							helperText={errors.phoneNumber && 'Phone number is required'}
+							label="Phone number"
 						/>
 					</Grid>
 				</Grid>
@@ -114,15 +96,14 @@ const PersonalDetails: FC<TPersonalDetailsProps> = ({
 			<Grid item>
 				<Grid container direction="column" spacing={1}>
 					<Grid item>
-						<Styledlabel htmlFor="email">Email</Styledlabel>
-					</Grid>
-					<Grid item>
 						<TextField
+							{...register('email', { required: true })}
 							title="email"
 							type="text"
-							value={email}
 							style={{ width: '100%', height: '40px' }}
-							onChange={(e) => setEmail(e.target.value)}
+							error={!!errors.email}
+							helperText={errors.email && 'Email is required'}
+							label="Email"
 						/>
 					</Grid>
 				</Grid>
@@ -131,22 +112,25 @@ const PersonalDetails: FC<TPersonalDetailsProps> = ({
 			<Grid item>
 				<Grid container direction="column" spacing={1}>
 					<Grid item>
-						<Styledlabel htmlFor="policyNumber">Policy number</Styledlabel>
-					</Grid>
-					<Grid item>
 						<TextField
+							{...register('policyNumber', { required: true })}
 							title="policyNumber"
 							type="number"
-							value={policyNumber}
 							style={{ width: '100%', height: '40px' }}
-							onChange={(e) => setPolicyNumber(Number(e.target.value))}
+							error={!!errors.policyNumber}
+							helperText={errors.policyNumber && 'Policy number is required'}
+							label="Policy number"
 						/>
 					</Grid>
 				</Grid>
 			</Grid>
 
 			<Grid container marginTop="50px" justifyContent="flex-end">
-				<FormButton text="Continue" onClick={() => setValue(1)} />
+				<FormButton
+					text="Continue"
+					type="submit"
+					onClick={() => submitForm(1)}
+				/>
 			</Grid>
 		</Grid>
 	);

@@ -47,6 +47,7 @@
 	"devDependencies": {
 		"@mui/icons-material": "^5.10.9",
 		"@mui/lab": "^5.0.0-alpha.103",
+		"react-hook-form": "^7.37.0",
 		"tsconfig-paths-webpack-plugin": "^4.0.0"
 	}
 }

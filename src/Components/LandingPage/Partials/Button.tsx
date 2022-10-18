@@ -1,4 +1,4 @@
-import { Button } from '@mui/material';
+import LoadingButton from '@mui/lab/LoadingButton';
 import { CSSProperties } from '@mui/styled-engine';
 import { FC, memo } from 'react';
 
@@ -8,6 +8,8 @@ type TButtonProps = {
 	sx?: CSSProperties;
 	onClick?: (v: any) => void;
 	disable?: boolean;
+	loading?: boolean;
+	type?: 'button' | 'submit' | 'reset';
 };
 
 const FormButton: FC<TButtonProps> = ({
@@ -16,10 +18,14 @@ const FormButton: FC<TButtonProps> = ({
 	sx,
 	onClick,
 	disable,
+	loading,
+	type,
 }) => {
 	return (
-		<Button
+		<LoadingButton
+			loading={loading}
 			onClick={onClick}
+			type={type}
 			disabled={disable}
 			variant={variant ? variant : 'contained'}
 			sx={{
@@ -36,7 +42,7 @@ const FormButton: FC<TButtonProps> = ({
 			}}
 		>
 			{text}
-		</Button>
+		</LoadingButton>
 	);
 };
 

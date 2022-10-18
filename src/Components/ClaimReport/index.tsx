@@ -1,5 +1,15 @@
-import { Box, Grid, styled, Tab, Tabs, Typography } from '@mui/material';
+import {
+	Alert,
+	Box,
+	Grid,
+	Snackbar,
+	styled,
+	Tab,
+	Tabs,
+	Typography,
+} from '@mui/material';
 import { memo, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import Container from '../LandingPage/Partials/Container';
 import ExpenseReport, { TExpenseItem } from './partials/ExpenseReport';
 import IncidentDetails from './partials/IncidentDetails';
@@ -53,52 +63,35 @@ function a11yProps(index: number) {
 }
 
 function Claimreport() {
-	const [value, setValue] = useState(0);
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm();
+	const [data, setData] = useState('');
+
+	const [value, setValue] = useState(2);
 	const [loading, setLoading] = useState(false);
-
-	//Use context to pass the value to the child components
-	const [firstName, setFirstName] = useState('');
-	const [lastName, setLastName] = useState('');
-	const [birthday, setBirthday] = useState('');
-	const [phoneNumber, setPhoneNumber] = useState<number>();
-	const [email, setEmail] = useState('');
-	const [policyNumber, setPolicyNumber] = useState<number>();
-
-	const [travelPurpose, setTravelPurpose] = useState('tourism');
-	const [country, setCountry] = useState('');
-	const [address, setAddress] = useState('');
-	const [date, setDate] = useState('');
-	const [description, setDescription] = useState('');
+	const [confirmReport, setConfirmReport] = useState(false);
 
 	const [expenseArr, setExpenseArr] = useState<TExpenseItem[]>(
 		JSON.parse(localStorage.getItem('expenseArr') || '')
 	);
 
-	const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-		setValue(newValue);
-	};
+	const submitForm = async (data1: any) => {
+		console.log(data);
+		if (data1 === 1) {
+			if (Object.keys(errors).length === 0) setValue(1);
+		} else if (data1 === 3) {
+			await setData(JSON.stringify(data));
 
-	const submitForm = async () => {
-		const reportObj = {
-			firstName,
-			lastName,
-			birthday,
-			phoneNumber,
-			email,
-			policyNumber,
-			travelPurpose,
-			country,
-			address,
-			date,
-			description,
-			expenseArr,
-		};
-
-		await setLoading(true);
-		await setTimeout(() => {
-			alert(JSON.stringify(reportObj));
-			setLoading(false);
-		}, 2000);
+			await setLoading(true);
+			await setTimeout(() => {
+				console.log(data);
+				setConfirmReport(true);
+				setLoading(false);
+			}, 2000);
+		}
 	};
 
 	return (
@@ -123,7 +116,6 @@ function Claimreport() {
 					<Box>
 						<Tabs
 							value={value}
-							onChange={handleChange}
 							aria-label="basic tabs example"
 							variant="scrollable"
 							sx={{ width: '100%', justifyContent: 'space-between' }}
@@ -136,51 +128,47 @@ function Claimreport() {
 				</Grid>
 
 				<Grid item style={{ width: '100%', maxWidth: '850px' }}>
-					<form onSubmit={submitForm}>
+					<form onSubmit={handleSubmit(() => submitForm({}))}>
 						<TabPanel value={value} index={0}>
 							<PersonalDetails
 								setValue={setValue}
-								firstName={firstName}
-								setFirstName={setFirstName}
-								lastName={lastName}
-								setLastName={setLastName}
-								birthday={birthday}
-								setBirthday={setBirthday}
-								phoneNumber={phoneNumber}
-								setPhoneNumber={setPhoneNumber}
-								email={email}
-								setEmail={setEmail}
-								policyNumber={policyNumber}
-								setPolicyNumber={setPolicyNumber}
+								register={register}
+								submitForm={submitForm}
+								errors={errors}
 							/>
 						</TabPanel>
 						<TabPanel value={value} index={1}>
-							<IncidentDetails
-								setValue={setValue}
-								travelPurpose={travelPurpose}
-								setTravelPurpose={setTravelPurpose}
-								country={country}
-								setCountry={setCountry}
-								address={address}
-								setAddress={setAddress}
-								date={date}
-								setDate={setDate}
-								description={description}
-								setDescription={setDescription}
-							/>
+							<IncidentDetails setValue={setValue} register={register} />
 						</TabPanel>
 						<TabPanel value={value} index={2}>
 							<ExpenseReport
+								register={register}
 								setValue={setValue}
-								submitForm={submitForm}
 								expenseArr={expenseArr}
 								setExpenseArr={setExpenseArr}
 								loading={loading}
+								submitForm={submitForm}
 							/>
 						</TabPanel>
 					</form>
 				</Grid>
 			</Grid>
+
+			{confirmReport && (
+				<Snackbar
+					open={confirmReport}
+					autoHideDuration={6000}
+					onClose={() => setConfirmReport(false)}
+				>
+					<Alert
+						onClose={() => setConfirmReport(false)}
+						severity="success"
+						sx={{ width: '100%' }}
+					>
+						Report Subbmitted!
+					</Alert>
+				</Snackbar>
+			)}
 		</Container>
 	);
 }

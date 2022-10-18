@@ -4,7 +4,6 @@ import { TExpenseItem } from './ExpenseReport';
 import FormButton from '../../LandingPage/Partials/Button';
 import CloseIcon from '@mui/icons-material/Close';
 import ExpenseButton from './ExpenseButton';
-import { Styledlabel } from './PersonalDetails';
 
 const modalStyle = {
 	position: 'absolute' as 'absolute',
@@ -25,7 +24,7 @@ type TReportModalProps = {
 	setExpenseArr: (value: React.SetStateAction<any[]>) => void;
 	open: boolean;
 	handleClose: () => void;
-	setShow: (v: boolean) => void;
+	setExpenseAdded: (v: boolean) => void;
 };
 
 const ReportModal: FC<TReportModalProps> = ({
@@ -33,7 +32,7 @@ const ReportModal: FC<TReportModalProps> = ({
 	setExpenseArr,
 	open,
 	handleClose,
-	setShow,
+	setExpenseAdded,
 }) => {
 	const [name, setName] = useState('');
 	const [price, setPrice] = useState('');
@@ -43,7 +42,7 @@ const ReportModal: FC<TReportModalProps> = ({
 			...prev,
 			{ id: expenseArr.length + 1, expense: name, amount: price },
 		]);
-		setShow(true);
+		setExpenseAdded(true);
 		handleClose();
 	};
 
@@ -52,13 +51,16 @@ const ReportModal: FC<TReportModalProps> = ({
 			<Modal
 				open={open}
 				onClose={handleClose}
-				aria-labelledby="modal-modal-title"
-				aria-describedby="modal-modal-description"
+				aria-label="modal-modal-title"
 				sx={{ backdropFilter: 'blur(5px)' }}
 			>
 				<Grid container direction="column" sx={modalStyle}>
 					<Grid item width="100%" justifyContent="right" display="flex">
-						<ExpenseButton icon={<CloseIcon />} onClick={handleClose} />
+						<ExpenseButton
+							ariaLabel="close modal"
+							icon={<CloseIcon />}
+							onClick={handleClose}
+						/>
 					</Grid>
 
 					<Grid item display="flex" justifyContent="center">
@@ -79,9 +81,6 @@ const ReportModal: FC<TReportModalProps> = ({
 						sx={{ margin: '10px 0', padding: 'unset' }}
 					>
 						<Grid item>
-							<Styledlabel htmlFor="firstName">Name</Styledlabel>
-						</Grid>
-						<Grid item>
 							<TextField
 								placeholder="Enter Expense Name"
 								title="firstName"
@@ -89,6 +88,7 @@ const ReportModal: FC<TReportModalProps> = ({
 								value={name}
 								style={{ width: '100%', height: '40px' }}
 								onChange={(e) => setName(e.target.value)}
+								label="Name"
 							/>
 						</Grid>
 					</Grid>
@@ -100,16 +100,14 @@ const ReportModal: FC<TReportModalProps> = ({
 						sx={{ margin: '10px 0', padding: 'unset' }}
 					>
 						<Grid item>
-							<Styledlabel htmlFor="firstName">Price</Styledlabel>
-						</Grid>
-						<Grid item>
 							<TextField
 								placeholder="Enter Expense Price"
 								title="firstName"
-								type="text"
+								type="number"
 								value={price}
 								style={{ width: '100%', height: '40px' }}
 								onChange={(e) => setPrice(e.target.value)}
+								label="Price"
 							/>
 						</Grid>
 					</Grid>
