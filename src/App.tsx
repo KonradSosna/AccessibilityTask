@@ -6,6 +6,7 @@ import ClaimReport from './Components/ClaimReport';
 import Contact from './Components/Contact';
 import Navbar from './Components/Navbar';
 import { useMediaQuery, useTheme } from '@mui/material';
+import NavbarMobile from './Components/NavbarMobile';
 
 function App() {
 	const theme = useTheme();
@@ -13,7 +14,7 @@ function App() {
 
 	return (
 		<div className="App">
-			{!isMobile && <Navbar />}
+			{!isMobile ? <Navbar /> : <NavbarMobile />}
 
 			<Routes>
 				<Route path="/" element={<LandingPage isMobile={isMobile} />} />
