@@ -15,6 +15,7 @@ type TExpenseReportProps = {
 	setExpenseArr: Dispatch<React.SetStateAction<TExpenseItem[]>>;
 	loading: boolean;
 	submitForm: (v: any) => void;
+	isMobile: boolean;
 };
 
 export type TExpenseItem = { id: string; expense: string; amount: string };
@@ -26,6 +27,7 @@ const ExpenseReport: FC<TExpenseReportProps> = ({
 	setExpenseArr,
 	loading,
 	submitForm,
+	isMobile,
 }) => {
 	const [open, setOpen] = useState(false);
 	const [expenseAdded, setExpenseAdded] = useState(false);
@@ -45,14 +47,6 @@ const ExpenseReport: FC<TExpenseReportProps> = ({
 		setExpenseArr(newArr);
 		setExpenseDeleted(true);
 	};
-
-	// function a11yProps(index: string) {
-	// 	return {
-	// 		id: `expense-list-item-${index}`,
-	// 		'aria-controls': `expense-list-item-${index}`,
-	// 		'aria-label': `expense-list-item-${index}`,
-	// 	};
-	// }
 
 	return (
 		<Grid
@@ -164,7 +158,12 @@ const ExpenseReport: FC<TExpenseReportProps> = ({
 				</Snackbar>
 			)}
 
-			<Grid container marginTop="50px" justifyContent="space-between">
+			<Grid
+				container
+				marginTop="50px"
+				justifyContent={isMobile ? 'center' : 'space-between'}
+				alignItems="center"
+			>
 				<FormButton
 					loading={loading}
 					variant="contained"
@@ -172,7 +171,8 @@ const ExpenseReport: FC<TExpenseReportProps> = ({
 						backgroundColor: 'unset',
 						color: 'black',
 						border: '1px solid black',
-						marginLeft: '32px',
+						marginLeft: `${isMobile ? 'unset' : '32px'}`,
+						marginRight: `${isMobile ? '10px' : 'unset'}`,
 					}}
 					text="return"
 					onClick={() => setValue(1)}

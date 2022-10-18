@@ -5,20 +5,27 @@ import AboutUs from './Components/AboutUs';
 import ClaimReport from './Components/ClaimReport';
 import Contact from './Components/Contact';
 import Navbar from './Components/Navbar';
+import { useMediaQuery, useTheme } from '@mui/material';
 
 function App() {
+	const theme = useTheme();
+	const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+
 	return (
 		<div className="App">
-			<Navbar />
+			{!isMobile && <Navbar />}
 
 			<Routes>
-				<Route path="/" element={<LandingPage />} />
+				<Route path="/" element={<LandingPage isMobile={isMobile} />} />
 				<Route path="about-us" element={<AboutUs />} />
-				<Route path="claim-report" element={<ClaimReport />} />
+				<Route
+					path="claim-report"
+					element={<ClaimReport isMobile={isMobile} />}
+				/>
 				<Route path="contact" element={<Contact />} />
 			</Routes>
 
-			<Footer />
+			<Footer isMobile={isMobile} />
 		</div>
 	);
 }

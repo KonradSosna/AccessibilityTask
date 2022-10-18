@@ -15,20 +15,6 @@ import ExpenseReport, { TExpenseItem } from './partials/ExpenseReport';
 import IncidentDetails from './partials/IncidentDetails';
 import PersonalDetails from './partials/PersonalDetails';
 
-const StyledTab = styled(Tab)({
-	color: 'black',
-	fontSize: '16px',
-	backgroundColor: '#C4C4C4',
-	borderRadius: '15px',
-	margin: '0 30px',
-	padding: '0 45px',
-	textTransform: 'capitalize',
-	'&.Mui-selected': {
-		backgroundColor: 'black',
-		color: 'white',
-	},
-});
-
 interface TabPanelProps {
 	children?: React.ReactNode;
 	index: number;
@@ -62,7 +48,22 @@ function a11yProps(index: number) {
 	};
 }
 
-function Claimreport() {
+function Claimreport({ isMobile }: { isMobile: boolean }) {
+	const StyledTab = styled(Tab)({
+		color: 'black',
+		fontSize: '16px',
+		backgroundColor: '#C4C4C4',
+		borderRadius: '15px',
+		margin: `${!isMobile ? '0 30px' : '0 10px'} `,
+		padding: `${!isMobile ? '0 45px' : '0 10px'} `,
+		textTransform: 'capitalize',
+
+		'&.Mui-selected': {
+			backgroundColor: 'black',
+			color: 'white',
+		},
+	});
+
 	const {
 		register,
 		handleSubmit,
@@ -70,7 +71,7 @@ function Claimreport() {
 	} = useForm();
 	const [data, setData] = useState('');
 
-	const [value, setValue] = useState(2);
+	const [value, setValue] = useState(0);
 	const [loading, setLoading] = useState(false);
 	const [confirmReport, setConfirmReport] = useState(false);
 
@@ -118,7 +119,11 @@ function Claimreport() {
 							value={value}
 							aria-label="basic tabs example"
 							variant="scrollable"
-							sx={{ width: '100%', justifyContent: 'space-between' }}
+							sx={{
+								width: '100%',
+								justifyContent: 'space-between',
+								flexWrap: 'wrap',
+							}}
 						>
 							<StyledTab label="Step 1 - Personal Details" {...a11yProps(0)} />
 							<StyledTab label="Step 2 - Incident Details" {...a11yProps(1)} />
@@ -138,7 +143,11 @@ function Claimreport() {
 							/>
 						</TabPanel>
 						<TabPanel value={value} index={1}>
-							<IncidentDetails setValue={setValue} register={register} />
+							<IncidentDetails
+								setValue={setValue}
+								register={register}
+								isMobile={isMobile}
+							/>
 						</TabPanel>
 						<TabPanel value={value} index={2}>
 							<ExpenseReport
@@ -148,6 +157,7 @@ function Claimreport() {
 								setExpenseArr={setExpenseArr}
 								loading={loading}
 								submitForm={submitForm}
+								isMobile={isMobile}
 							/>
 						</TabPanel>
 					</form>

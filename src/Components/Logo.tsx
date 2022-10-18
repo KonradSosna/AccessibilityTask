@@ -14,7 +14,9 @@ function Logo() {
 	return (
 		<StyledLink
 			to="/"
-			style={{ cursor: location.pathname === '/' ? 'default' : 'pointer' }}
+			style={{
+				cursor: location.pathname === '/' ? 'default' : 'pointer',
+			}}
 		>
 			<Grid container gap={2} alignItems="center">
 				<StyledTypography>The Insurer</StyledTypography>

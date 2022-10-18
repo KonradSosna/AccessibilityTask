@@ -27,12 +27,12 @@ const Navbar = () => {
 		<Grid
 			container
 			direction="row"
-			justifyContent="space-between"
+			justifyContent="space-around"
 			height="70px"
 			alignItems="center"
-			padding="0 120px"
+			flexWrap="nowrap"
 		>
-			<Grid item>
+			<Grid item sx={{ minWidth: '250px' }}>
 				<Logo />
 			</Grid>
 

@@ -13,9 +13,14 @@ import { Styledlabel } from './PersonalDetails';
 type TIncidentDetailsProps = {
 	setValue: Dispatch<React.SetStateAction<number>>;
 	register: ReturnType<typeof useForm>['register'];
+	isMobile: boolean;
 };
 
-const IncidentDetails: FC<TIncidentDetailsProps> = ({ setValue, register }) => {
+const IncidentDetails: FC<TIncidentDetailsProps> = ({
+	setValue,
+	register,
+	isMobile,
+}) => {
 	return (
 		<Grid container direction="column" spacing={4} width="100%">
 			<Grid item>
@@ -121,14 +126,20 @@ const IncidentDetails: FC<TIncidentDetailsProps> = ({ setValue, register }) => {
 				</Grid>
 			</Grid>
 
-			<Grid container marginTop="50px" justifyContent="space-between">
+			<Grid
+				container
+				marginTop="50px"
+				justifyContent={isMobile ? 'center' : 'space-between'}
+				alignItems="center"
+			>
 				<FormButton
 					variant="contained"
 					sx={{
 						backgroundColor: 'unset',
 						color: 'black',
 						border: '1px solid black',
-						marginLeft: '32px',
+						marginLeft: `${isMobile ? 'unset' : '32px'}`,
+						marginRight: `${isMobile ? '10px' : 'unset'}`,
 					}}
 					text="return"
 					onClick={() => setValue(0)}

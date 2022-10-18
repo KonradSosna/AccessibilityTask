@@ -2,15 +2,16 @@ import { Grid, ListItem, List, Typography } from '@mui/material';
 import Container from './LandingPage/Partials/Container';
 import Logo from './Logo';
 
-function Footer() {
+function Footer({ isMobile }: { isMobile: boolean }) {
 	return (
 		<Container
 			className="footer"
 			sx={{
 				backgroundColor: '#F2F2F2',
 				justifyContent: 'space-around',
-				height: '400px',
+				minHeight: '400px',
 			}}
+			direction={isMobile ? 'column' : 'row'}
 		>
 			<Grid
 				item
@@ -26,7 +27,7 @@ function Footer() {
 			</Grid>
 
 			<Grid item xs={5}>
-				<Grid container gap={3}>
+				<Grid container gap={3} justifyContent="center">
 					<Grid item>
 						<List
 							aria-label="footer navigation bar"
@@ -34,6 +35,7 @@ function Footer() {
 								listStyleType: 'none',
 								textTransform: 'capitalize',
 								cursor: 'pointer',
+								width: '100%',
 							}}
 						>
 							<ListItem>

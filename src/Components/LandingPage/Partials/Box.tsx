@@ -4,7 +4,13 @@ import { memo } from 'react';
 const Box = ({ text }: { text: string }) => {
 	return (
 		<Grid item>
-			<Grid container direction="column" gap={4} width="300px">
+			<Grid
+				container
+				direction="column"
+				gap={4}
+				width="300px"
+				alignItems="center"
+			>
 				<Grid
 					item
 					sx={{

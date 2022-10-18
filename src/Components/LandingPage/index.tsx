@@ -4,7 +4,7 @@ import Container from './Partials/Container';
 import FormButton from './Partials/Button';
 import FormList from './Partials/List';
 
-const LandingPage = () => {
+const LandingPage = ({ isMobile }: { isMobile: boolean }) => {
 	return (
 		<>
 			<Container
@@ -15,7 +15,12 @@ const LandingPage = () => {
 				}}
 			>
 				<Grid item>
-					<Typography fontSize={40} fontWeight={600} textTransform="capitalize">
+					<Typography
+						fontSize={40}
+						fontWeight={600}
+						textTransform="capitalize"
+						textAlign="center"
+					>
 						Travel insurance
 					</Typography>
 				</Grid>
@@ -36,7 +41,12 @@ const LandingPage = () => {
 					sx={{ width: '470px', height: '360px', border: '1px solid black' }}
 				></Grid>
 				<Grid item>
-					<Grid container direction="column" gap={4}>
+					<Grid
+						container
+						direction="column"
+						gap={4}
+						alignItems={isMobile ? 'center' : 'unset'}
+					>
 						<Grid item>
 							<Typography
 								fontSize={22}
@@ -68,6 +78,9 @@ const LandingPage = () => {
 						maxWidth="500px"
 						textTransform="capitalize"
 						m="30px 0"
+						display="flex"
+						flexDirection="column"
+						alignItems={isMobile ? 'center' : 'unset'}
 					>
 						Safe Travels
 					</Typography>
@@ -91,6 +104,7 @@ const LandingPage = () => {
 				direction="column"
 				sx={{
 					justifyContent: 'space-evenly',
+					flexWrap: 'nowrap',
 				}}
 			>
 				<Grid item>
@@ -100,7 +114,12 @@ const LandingPage = () => {
 				</Grid>
 
 				<Grid item>
-					<Grid container direction="row">
+					<Grid
+						container
+						direction="row"
+						alignItems={isMobile ? 'center' : 'unset'}
+						justifyContent="center"
+					>
 						<Box text={'renting vacation homes'} />
 						<Box text={'trends & predictions'} />
 						<Box text={'popular travel destinations for 2021'} />
@@ -133,30 +152,36 @@ const LandingPage = () => {
 					}}
 				></Grid>
 				<Grid item>
-					<Typography fontSize={14} fontWeight={500} maxWidth="700px">
+					<Typography fontSize={14} fontWeight={500}>
 						Donald Duck, CEO of Disney
 					</Typography>
 				</Grid>
 			</Container>
 
-			<Container direction="row" sx={{ height: '250px' }}>
+			<Container direction="row">
 				<Grid item>
 					<Typography
 						fontSize={28}
 						fontWeight={600}
 						maxWidth="500px"
 						m="10px 0"
+						textAlign="center"
 					>
 						Are you looking for an insurance?
 					</Typography>
 
-					<Typography fontSize={20} fontWeight={500} maxWidth="500px">
+					<Typography
+						fontSize={20}
+						fontWeight={500}
+						maxWidth="500px"
+						textAlign="center"
+					>
 						Contact us to order now
 					</Typography>
 				</Grid>
 
 				<Grid item>
-					<Grid container spacing={2}>
+					<Grid container spacing={2} justifyContent="center">
 						<Grid item>
 							<FormButton
 								text="call us"

@@ -23,7 +23,9 @@ const Container = ({
 				direction={direction ? direction : 'row'}
 				gap={3}
 				sx={{
-					height: '700px',
+					minHeight: '700px',
+					height: '100%',
+					padding: '20px',
 					width: '100%',
 					justifyContent: 'space-evenly',
 					alignItems: 'center',

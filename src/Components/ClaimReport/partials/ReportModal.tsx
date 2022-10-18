@@ -10,7 +10,7 @@ const modalStyle = {
 	top: '50%',
 	left: '50%',
 	transform: 'translate(-50%, -50%)',
-	width: 900,
+	maxWidth: 900,
 	bgcolor: 'background.paper',
 	border: '2px solid #000',
 	borderRadius: '15px',
@@ -83,7 +83,7 @@ const ReportModal: FC<TReportModalProps> = ({
 						<Grid item>
 							<TextField
 								placeholder="Enter Expense Name"
-								title="firstName"
+								title="expenseName"
 								type="text"
 								value={name}
 								style={{ width: '100%', height: '40px' }}
@@ -102,7 +102,7 @@ const ReportModal: FC<TReportModalProps> = ({
 						<Grid item>
 							<TextField
 								placeholder="Enter Expense Price"
-								title="firstName"
+								title="expensePrice"
 								type="number"
 								value={price}
 								style={{ width: '100%', height: '40px' }}
