@@ -68,8 +68,9 @@ function Claimreport({ isMobile }: { isMobile: boolean }) {
 		register,
 		handleSubmit,
 		formState: { errors },
+		trigger,
 	} = useForm();
-	const [data, setData] = useState('');
+	const [, setData] = useState('');
 
 	const [value, setValue] = useState(0);
 	const [loading, setLoading] = useState(false);
@@ -79,20 +80,15 @@ function Claimreport({ isMobile }: { isMobile: boolean }) {
 		JSON.parse(localStorage.getItem('expenseArr') || '')
 	);
 
-	const submitForm = async (data1: any) => {
-		console.log(data);
-		if (data1 === 1) {
-			if (Object.keys(errors).length === 0) setValue(1);
-		} else if (data1 === 3) {
-			await setData(JSON.stringify(data));
+	const submitForm = async (data: any) => {
+		await setData(JSON.stringify(data));
 
-			await setLoading(true);
-			await setTimeout(() => {
-				console.log(data);
-				setConfirmReport(true);
-				setLoading(false);
-			}, 2000);
-		}
+		await setLoading(true);
+		await setTimeout(() => {
+			console.log(data);
+			setConfirmReport(true);
+			setLoading(false);
+		}, 2000);
 	};
 
 	return (
@@ -133,20 +129,22 @@ function Claimreport({ isMobile }: { isMobile: boolean }) {
 				</Grid>
 
 				<Grid item style={{ width: '100%', maxWidth: '850px' }}>
-					<form onSubmit={handleSubmit(() => submitForm({}))}>
+					<form onSubmit={handleSubmit((data) => submitForm(data))}>
 						<TabPanel value={value} index={0}>
 							<PersonalDetails
+								trigger={trigger}
 								setValue={setValue}
 								register={register}
-								submitForm={submitForm}
 								errors={errors}
 							/>
 						</TabPanel>
 						<TabPanel value={value} index={1}>
 							<IncidentDetails
+								trigger={trigger}
 								setValue={setValue}
 								register={register}
 								isMobile={isMobile}
+								errors={errors}
 							/>
 						</TabPanel>
 						<TabPanel value={value} index={2}>
@@ -156,7 +154,6 @@ function Claimreport({ isMobile }: { isMobile: boolean }) {
 								expenseArr={expenseArr}
 								setExpenseArr={setExpenseArr}
 								loading={loading}
-								submitForm={submitForm}
 								isMobile={isMobile}
 							/>
 						</TabPanel>

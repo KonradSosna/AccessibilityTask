@@ -14,7 +14,6 @@ type TExpenseReportProps = {
 	expenseArr: TExpenseItem[];
 	setExpenseArr: Dispatch<React.SetStateAction<TExpenseItem[]>>;
 	loading: boolean;
-	submitForm: (v: any) => void;
 	isMobile: boolean;
 };
 
@@ -26,7 +25,6 @@ const ExpenseReport: FC<TExpenseReportProps> = ({
 	expenseArr,
 	setExpenseArr,
 	loading,
-	submitForm,
 	isMobile,
 }) => {
 	const [open, setOpen] = useState(false);
@@ -179,12 +177,7 @@ const ExpenseReport: FC<TExpenseReportProps> = ({
 					text="return"
 					onClick={() => setValue(1)}
 				/>
-				<FormButton
-					text="submit"
-					type="submit"
-					loading={loading}
-					onClick={() => submitForm(3)}
-				/>
+				<FormButton text="submit" type="submit" loading={loading} />
 			</Grid>
 		</Grid>
 	);

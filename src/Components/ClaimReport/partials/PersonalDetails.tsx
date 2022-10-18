@@ -10,16 +10,16 @@ export const Styledlabel = styled.label`
 `;
 
 type TPersonalDetailsProps = {
+	trigger: any;
 	setValue: Dispatch<React.SetStateAction<number>>;
 	register: ReturnType<typeof useForm>['register'];
-	submitForm: (v: any) => void;
 	errors: any;
 };
 
 const PersonalDetails: FC<TPersonalDetailsProps> = ({
+	trigger,
 	setValue,
 	register,
-	submitForm,
 	errors,
 }) => {
 	return (
@@ -129,7 +129,9 @@ const PersonalDetails: FC<TPersonalDetailsProps> = ({
 				<FormButton
 					text="Continue"
 					type="submit"
-					onClick={() => submitForm(1)}
+					onClick={() =>
+						trigger().then((isValid: boolean) => isValid && setValue(1))
+					}
 				/>
 			</Grid>
 		</Grid>

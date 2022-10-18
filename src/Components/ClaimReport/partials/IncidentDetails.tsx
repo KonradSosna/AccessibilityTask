@@ -11,18 +11,22 @@ import FormButton from '../../LandingPage/Partials/Button';
 import { Styledlabel } from './PersonalDetails';
 
 type TIncidentDetailsProps = {
+	trigger: any;
 	setValue: Dispatch<React.SetStateAction<number>>;
 	register: ReturnType<typeof useForm>['register'];
 	isMobile: boolean;
+	errors: any;
 };
 
 const IncidentDetails: FC<TIncidentDetailsProps> = ({
+	trigger,
 	setValue,
 	register,
 	isMobile,
+	errors,
 }) => {
 	return (
-		<Grid container direction="column" spacing={4} width="100%">
+		<Grid container direction="column" spacing={6} width="100%">
 			<Grid item>
 				<Grid container direction="column" spacing={1}>
 					<Grid item>
@@ -30,7 +34,7 @@ const IncidentDetails: FC<TIncidentDetailsProps> = ({
 					</Grid>
 					<Grid item>
 						<RadioGroup
-							{...register('travelPurpose')}
+							{...register('travelPurpose', { required: true })}
 							title="travelPurpose"
 							aria-labelledby="demo-radio-buttons-group-label"
 							defaultValue="tourism"
@@ -65,7 +69,7 @@ const IncidentDetails: FC<TIncidentDetailsProps> = ({
 				<Grid container direction="column" spacing={1}>
 					<Grid item>
 						<TextField
-							{...register('country')}
+							{...register('country', { required: true })}
 							title="country"
 							type="text"
 							style={{
@@ -73,6 +77,8 @@ const IncidentDetails: FC<TIncidentDetailsProps> = ({
 								height: '40px',
 							}}
 							label="Country"
+							error={!!errors.country}
+							helperText={errors.country && 'Country  is required'}
 						/>
 					</Grid>
 				</Grid>
@@ -82,11 +88,13 @@ const IncidentDetails: FC<TIncidentDetailsProps> = ({
 				<Grid container direction="column" spacing={1}>
 					<Grid item>
 						<TextField
-							{...register('address')}
+							{...register('address', { required: true })}
 							title="address"
 							type="text"
 							style={{ width: '100%', height: '40px' }}
 							label="Address"
+							error={!!errors.address}
+							helperText={errors.address && 'Address  is required'}
 						/>
 					</Grid>
 				</Grid>
@@ -95,7 +103,7 @@ const IncidentDetails: FC<TIncidentDetailsProps> = ({
 			<Grid item>
 				<Grid container direction="column">
 					<TextField
-						{...register('date')}
+						{...register('date', { required: true })}
 						title="date"
 						fullWidth
 						id="date"
@@ -104,6 +112,8 @@ const IncidentDetails: FC<TIncidentDetailsProps> = ({
 							shrink: true,
 						}}
 						label="Date"
+						error={!!errors.date}
+						helperText={errors.date && 'Date  is required'}
 					/>
 				</Grid>
 			</Grid>
@@ -144,7 +154,12 @@ const IncidentDetails: FC<TIncidentDetailsProps> = ({
 					text="return"
 					onClick={() => setValue(0)}
 				/>
-				<FormButton text="continue" onClick={() => setValue(2)} />
+				<FormButton
+					text="continue"
+					onClick={() =>
+						trigger().then((isValid: boolean) => isValid && setValue(2))
+					}
+				/>
 			</Grid>
 		</Grid>
 	);
