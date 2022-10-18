@@ -72,7 +72,7 @@ function Claimreport({ isMobile }: { isMobile: boolean }) {
 	} = useForm();
 	const [, setData] = useState('');
 
-	const [value, setValue] = useState(1);
+	const [value, setValue] = useState(0);
 	const [loading, setLoading] = useState(false);
 	const [confirmReport, setConfirmReport] = useState(false);
 
