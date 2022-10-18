@@ -132,6 +132,7 @@ const ExpenseReport: FC<TExpenseReportProps> = ({
 					open={expenseAdded}
 					autoHideDuration={6000}
 					onClose={() => setExpenseAdded(false)}
+					role="alert"
 				>
 					<Alert
 						onClose={() => setExpenseAdded(false)}
@@ -147,6 +148,7 @@ const ExpenseReport: FC<TExpenseReportProps> = ({
 					open={expenseDeleted}
 					autoHideDuration={6000}
 					onClose={() => setExpenseDeleted(false)}
+					role="alert"
 				>
 					<Alert
 						onClose={() => setExpenseDeleted(false)}
