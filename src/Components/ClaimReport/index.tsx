@@ -72,12 +72,12 @@ function Claimreport({ isMobile }: { isMobile: boolean }) {
 	} = useForm();
 	const [, setData] = useState('');
 
-	const [value, setValue] = useState(0);
+	const [value, setValue] = useState(1);
 	const [loading, setLoading] = useState(false);
 	const [confirmReport, setConfirmReport] = useState(false);
 
 	const [expenseArr, setExpenseArr] = useState<TExpenseItem[]>(
-		JSON.parse(localStorage.getItem('expenseArr') || '')
+		JSON.parse(localStorage.getItem('expenseArr') || '[]')
 	);
 
 	const submitForm = async (data: any) => {

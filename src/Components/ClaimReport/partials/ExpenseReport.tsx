@@ -11,7 +11,7 @@ import { useForm } from 'react-hook-form';
 type TExpenseReportProps = {
 	register: ReturnType<typeof useForm>['register'];
 	setValue: Dispatch<React.SetStateAction<number>>;
-	expenseArr: TExpenseItem[];
+	expenseArr: TExpenseItem[] | [];
 	setExpenseArr: Dispatch<React.SetStateAction<TExpenseItem[]>>;
 	loading: boolean;
 	isMobile: boolean;
@@ -61,7 +61,7 @@ const ExpenseReport: FC<TExpenseReportProps> = ({
 							Expense report
 						</Styledlabel>
 					</Grid>
-					{expenseArr.map((expense) => (
+					{expenseArr?.map((expense) => (
 						<Grid
 							container
 							key={expense.id}
