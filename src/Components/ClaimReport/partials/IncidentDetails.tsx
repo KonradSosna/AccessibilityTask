@@ -34,7 +34,7 @@ const IncidentDetails: FC<TIncidentDetailsProps> = ({
 					</Grid>
 					<Grid item>
 						<RadioGroup
-							{...register('travelPurpose', { required: true })}
+							{...register('travelPurpose')}
 							title="travelPurpose"
 							aria-labelledby="demo-radio-buttons-group-label"
 							defaultValue="tourism"
