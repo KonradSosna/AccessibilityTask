@@ -15,7 +15,7 @@ function Logo() {
 		<StyledLink
 			to="/"
 			style={{
-				cursor: location.pathname === '/' ? 'default' : 'pointer',
+				cursor: location.pathname === '/insurance' ? 'default' : 'pointer',
 			}}
 		>
 			<Grid container gap={2} alignItems="center">
