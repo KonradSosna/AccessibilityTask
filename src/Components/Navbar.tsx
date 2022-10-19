@@ -56,15 +56,10 @@ const Navbar = () => {
 						<StyledLink to="/">
 							<ListItemButton
 								sx={{
-									fontWeight:
-										selectedIndex === '/AccessibilityTask/insurance'
-											? 600
-											: 400,
+									fontWeight: selectedIndex === '/insurance' ? 600 : 400,
 								}}
-								selected={selectedIndex === '/AccessibilityTask/insurance'}
-								onClick={(event) =>
-									handleListItemClick(event, '/AccessibilityTask/insurance')
-								}
+								selected={selectedIndex === '/insurance'}
+								onClick={(event) => handleListItemClick(event, '/insurance')}
 							>
 								Insurance
 							</ListItemButton>
@@ -73,13 +68,10 @@ const Navbar = () => {
 						<StyledLink to="/about-us">
 							<ListItemButton
 								sx={{
-									fontWeight:
-										selectedIndex === '/AccessibilityTask/about-us' ? 600 : 400,
+									fontWeight: selectedIndex === '/about-us' ? 600 : 400,
 								}}
-								selected={selectedIndex === '/AccessibilityTask/about-us'}
-								onClick={(event) =>
-									handleListItemClick(event, '/AccessibilityTask/about-us')
-								}
+								selected={selectedIndex === '/about-us'}
+								onClick={(event) => handleListItemClick(event, '/about-us')}
 							>
 								About us
 							</ListItemButton>
@@ -88,15 +80,10 @@ const Navbar = () => {
 						<StyledLink to="/claim-report">
 							<ListItemButton
 								sx={{
-									fontWeight:
-										selectedIndex === '/AccessibilityTask/claim-report'
-											? 600
-											: 400,
+									fontWeight: selectedIndex === '/claim-report' ? 600 : 400,
 								}}
-								selected={selectedIndex === '/AccessibilityTask/claim-report'}
-								onClick={(event) =>
-									handleListItemClick(event, '/AccessibilityTask/claim-report')
-								}
+								selected={selectedIndex === '/claim-report'}
+								onClick={(event) => handleListItemClick(event, '/claim-report')}
 							>
 								Claim report
 							</ListItemButton>
@@ -105,13 +92,10 @@ const Navbar = () => {
 						<StyledLink to="/contact">
 							<ListItemButton
 								sx={{
-									fontWeight:
-										selectedIndex === '/AccessibilityTask/contact' ? 600 : 400,
+									fontWeight: selectedIndex === '/contact' ? 600 : 400,
 								}}
-								selected={selectedIndex === '/AccessibilityTask/contact'}
-								onClick={(event) =>
-									handleListItemClick(event, '/AccessibilityTask/contact')
-								}
+								selected={selectedIndex === '/contact'}
+								onClick={(event) => handleListItemClick(event, '/contact')}
 							>
 								Contact
 							</ListItemButton>
