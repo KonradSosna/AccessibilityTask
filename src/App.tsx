@@ -17,13 +17,16 @@ function App() {
 			{!isMobile ? <Navbar /> : <NavbarMobile />}
 
 			<Routes>
-				<Route path="insurance" element={<LandingPage isMobile={isMobile} />} />
-				<Route path="about-us" element={<AboutUs />} />
 				<Route
-					path="claim-report"
+					path="/AccessibilityTask/insurance"
+					element={<LandingPage isMobile={isMobile} />}
+				/>
+				<Route path="/AccessibilityTask/about-us" element={<AboutUs />} />
+				<Route
+					path="/AccessibilityTask/claim-report"
 					element={<ClaimReport isMobile={isMobile} />}
 				/>
-				<Route path="contact" element={<Contact />} />
+				<Route path="/AccessibilityTask/contact" element={<Contact />} />
 			</Routes>
 
 			<Footer isMobile={isMobile} />
