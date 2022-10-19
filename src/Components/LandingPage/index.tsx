@@ -20,6 +20,7 @@ const LandingPage = ({ isMobile }: { isMobile: boolean }) => {
 						fontWeight={600}
 						textTransform="capitalize"
 						textAlign="center"
+						variant="h1"
 					>
 						Travel insurance
 					</Typography>
@@ -53,6 +54,7 @@ const LandingPage = ({ isMobile }: { isMobile: boolean }) => {
 								fontWeight={600}
 								maxWidth="500px"
 								textTransform="capitalize"
+								variant="h2"
 							>
 								Insurance for Inernational Visitors
 							</Typography>
@@ -81,6 +83,7 @@ const LandingPage = ({ isMobile }: { isMobile: boolean }) => {
 						display="flex"
 						flexDirection="column"
 						alignItems={isMobile ? 'center' : 'unset'}
+						variant="h2"
 					>
 						Safe Travels
 					</Typography>
@@ -108,7 +111,12 @@ const LandingPage = ({ isMobile }: { isMobile: boolean }) => {
 				}}
 			>
 				<Grid item>
-					<Typography fontSize={30} fontWeight={600} textTransform="capitalize">
+					<Typography
+						fontSize={30}
+						fontWeight={600}
+						textTransform="capitalize"
+						variant="h1"
+					>
 						Explore our travel topics
 					</Typography>
 				</Grid>
@@ -166,6 +174,7 @@ const LandingPage = ({ isMobile }: { isMobile: boolean }) => {
 						maxWidth="500px"
 						m="10px 0"
 						textAlign="center"
+						variant="h1"
 					>
 						Are you looking for an insurance?
 					</Typography>

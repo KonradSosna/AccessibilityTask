@@ -104,7 +104,12 @@ function Claimreport({ isMobile }: { isMobile: boolean }) {
 				flexWrap="nowrap"
 			>
 				<Grid item>
-					<Typography fontWeight="600" fontSize="30px" marginBottom="35px">
+					<Typography
+						fontWeight="600"
+						fontSize="30px"
+						marginBottom="35px"
+						variant="h1"
+					>
 						Claim report
 					</Typography>
 				</Grid>

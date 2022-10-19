@@ -36,7 +36,7 @@ const IncidentDetails: FC<TIncidentDetailsProps> = ({
 						<RadioGroup
 							{...register('travelPurpose')}
 							title="travelPurpose"
-							aria-labelledby="demo-radio-buttons-group-label"
+							aria-label="radio-buttons-group-travel-purpose"
 							defaultValue="tourism"
 							name="radio-buttons-group"
 						>
@@ -101,38 +101,35 @@ const IncidentDetails: FC<TIncidentDetailsProps> = ({
 			</Grid>
 
 			<Grid item>
-				<Grid container direction="column">
-					<TextField
-						{...register('date', { required: true })}
-						title="date"
-						fullWidth
-						id="date"
-						type="date"
-						InputLabelProps={{
-							shrink: true,
-						}}
-						label="Date"
-						error={!!errors.date}
-						helperText={errors.date && 'Date  is required'}
-					/>
-				</Grid>
+				<TextField
+					{...register('date', { required: true })}
+					title="date"
+					fullWidth
+					id="date"
+					type="date"
+					InputLabelProps={{
+						shrink: true,
+					}}
+					label="Date"
+					error={!!errors.date}
+					helperText={errors.date && 'Date  is required'}
+				/>
 			</Grid>
 
 			<Grid item>
-				<Grid container direction="column" spacing={1}>
-					<Grid item></Grid>
-					<Grid item>
-						<TextField
-							{...register('description')}
-							title="description"
-							type="text"
-							style={{ width: '100%', height: '180px' }}
-							inputProps={{ maxLength: 1999 }}
-							multiline
-							rows={7}
-							label="Description"
-						/>
-					</Grid>
+				<Grid item>
+					<TextField
+						{...register('description', { required: true })}
+						title="description"
+						type="text"
+						style={{ width: '100%' }}
+						inputProps={{ maxLength: 1999 }}
+						multiline
+						rows={7}
+						label="Description"
+						error={!!errors.description}
+						helperText={errors.description && 'Description  is required'}
+					/>
 				</Grid>
 			</Grid>
 

@@ -57,7 +57,7 @@ const ExpenseReport: FC<TExpenseReportProps> = ({
 			<Grid item>
 				<Grid container direction="column">
 					<Grid item sx={{ marginBottom: '20px' }}>
-						<Styledlabel style={{ fontSize: '16px' }} htmlFor="travelPurpose">
+						<Styledlabel style={{ fontSize: '16px' }}>
 							Expense report
 						</Styledlabel>
 					</Grid>

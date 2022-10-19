@@ -12,12 +12,23 @@ function AboutUs() {
 			}}
 		>
 			<Grid item>
-				<Typography fontSize={40} fontWeight={600} textTransform="capitalize">
+				<Typography
+					fontSize={40}
+					fontWeight={600}
+					textTransform="capitalize"
+					variant="h1"
+				>
 					about us
 				</Typography>
 			</Grid>
 			<Grid item>
-				<Typography fontSize={20} fontWeight={500} maxWidth="700px">
+				<Typography
+					fontSize={20}
+					fontWeight={500}
+					textAlign="center"
+					maxWidth="700px"
+					variant="h2"
+				>
 					Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis error
 					corporis explicabo labore nobis ea cum doloremque dolorem!
 				</Typography>

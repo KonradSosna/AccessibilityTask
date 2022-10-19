@@ -19,7 +19,7 @@ function Logo() {
 			}}
 		>
 			<Grid container gap={2} alignItems="center">
-				<StyledTypography>The Insurer</StyledTypography>
+				<StyledTypography variant="caption">The Insurer</StyledTypography>
 				<div
 					style={{
 						backgroundColor: '#c4c4c4',
