@@ -61,9 +61,9 @@ function NavbarMobile() {
 			>
 				<StyledLink to="/">
 					<ListItemButton
-						sx={{ fontWeight: selectedIndex === '/' ? 600 : 400 }}
-						selected={selectedIndex === '/'}
-						onClick={(event) => handleListItemClick(event, '/')}
+						sx={{ fontWeight: selectedIndex === '/insurance' ? 600 : 400 }}
+						selected={selectedIndex === '/insurance'}
+						onClick={(event) => handleListItemClick(event, '/insurance')}
 					>
 						Insurance
 					</ListItemButton>

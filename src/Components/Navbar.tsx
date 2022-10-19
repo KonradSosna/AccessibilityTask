@@ -55,9 +55,9 @@ const Navbar = () => {
 					>
 						<StyledLink to="/">
 							<ListItemButton
-								sx={{ fontWeight: selectedIndex === '/' ? 600 : 400 }}
+								sx={{ fontWeight: selectedIndex === '/insurance' ? 600 : 400 }}
 								selected={selectedIndex === '/insurance'}
-								onClick={(event) => handleListItemClick(event, '/')}
+								onClick={(event) => handleListItemClick(event, '/insurance')}
 							>
 								Insurance
 							</ListItemButton>
