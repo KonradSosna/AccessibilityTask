@@ -17,7 +17,7 @@ function App() {
 			{!isMobile ? <Navbar /> : <NavbarMobile />}
 
 			<Routes>
-				<Route path="insurance" element={<LandingPage isMobile={isMobile} />} />
+				<Route path="/" element={<LandingPage isMobile={isMobile} />} />
 				<Route path="about-us" element={<AboutUs />} />
 				<Route
 					path="claim-report"
