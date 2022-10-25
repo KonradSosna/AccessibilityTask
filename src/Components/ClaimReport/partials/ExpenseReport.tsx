@@ -1,4 +1,4 @@
-import { Alert, Grid, Snackbar, Typography } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import { Dispatch, FC, memo, useEffect, useState } from 'react';
 import FormButton from '../../LandingPage/Partials/Button';
 import ExpenseButton from './ExpenseButton';
@@ -7,6 +7,7 @@ import ModeIcon from '@mui/icons-material/Mode';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import ReportModal from './ReportModal';
 import { useForm } from 'react-hook-form';
+import Toast from 'src/Components/Toast';
 
 type TExpenseReportProps = {
 	register: ReturnType<typeof useForm>['register'];
@@ -135,55 +136,30 @@ const ExpenseReport: FC<TExpenseReportProps> = ({
 					setExpenseAdded={setExpenseAdded}
 					setExpenseEdited={setExpenseEdited}
 					item={item}
+					setItem={setItem}
 				/>
 			)}
 
-			<Snackbar
+			<Toast
+				message="New expense added!"
 				open={expenseAdded}
-				autoHideDuration={6000}
 				onClose={() => setExpenseAdded(false)}
-				role="status"
-				aria-live="polite"
-			>
-				<Alert
-					onClose={() => setExpenseAdded(false)}
-					severity="success"
-					sx={{ width: '100%' }}
-					aria-live="polite"
-				>
-					New expense added!
-				</Alert>
-			</Snackbar>
-			<Snackbar
+				toastType="success"
+			/>
+
+			<Toast
+				message="Expense deleted"
 				open={expenseDeleted}
-				autoHideDuration={6000}
 				onClose={() => setExpenseDeleted(false)}
-				role="status"
-			>
-				<Alert
-					onClose={() => setExpenseDeleted(false)}
-					severity="success"
-					sx={{ width: '100%' }}
-				>
-					Expense deleted
-				</Alert>
-			</Snackbar>
-			<Snackbar
+				toastType="success"
+			/>
+
+			<Toast
+				message="Expense edited"
 				open={expenseEdited}
-				autoHideDuration={6000}
-				onClose={() => setExpenseAdded(false)}
-				role="status"
-				aria-live="polite"
-			>
-				<Alert
-					onClose={() => setExpenseEdited(false)}
-					severity="success"
-					sx={{ width: '100%' }}
-					aria-live="polite"
-				>
-					Expense edited
-				</Alert>
-			</Snackbar>
+				onClose={() => setExpenseEdited(false)}
+				toastType="success"
+			/>
 
 			<Grid
 				container

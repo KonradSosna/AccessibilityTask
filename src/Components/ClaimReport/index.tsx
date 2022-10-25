@@ -1,16 +1,8 @@
-import {
-	Alert,
-	Box,
-	Grid,
-	Snackbar,
-	styled,
-	Tab,
-	Tabs,
-	Typography,
-} from '@mui/material';
+import { Box, Grid, styled, Tab, Tabs, Typography } from '@mui/material';
 import { memo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Container from '../LandingPage/Partials/Container';
+import Toast from '../Toast';
 import ExpenseReport, { TExpenseItem } from './partials/ExpenseReport';
 import IncidentDetails from './partials/IncidentDetails';
 import PersonalDetails from './partials/PersonalDetails';
@@ -72,7 +64,7 @@ function Claimreport({ isMobile }: { isMobile: boolean }) {
 	} = useForm();
 	const [, setData] = useState('');
 
-	const [value, setValue] = useState(0);
+	const [value, setValue] = useState(2); //////////////////////////change to 0
 	const [loading, setLoading] = useState(false);
 	const [confirmReport, setConfirmReport] = useState(false);
 
@@ -174,21 +166,12 @@ function Claimreport({ isMobile }: { isMobile: boolean }) {
 				</Grid>
 			</Grid>
 
-			<Snackbar
+			<Toast
+				message="Report Subbmitted!"
 				open={confirmReport}
-				autoHideDuration={6000}
 				onClose={() => setConfirmReport(false)}
-				aria-live="polite"
-			>
-				<Alert
-					onClose={() => setConfirmReport(false)}
-					severity="success"
-					sx={{ width: '100%' }}
-					role="status"
-				>
-					Report Subbmitted!
-				</Alert>
-			</Snackbar>
+				toastType="success"
+			/>
 		</Container>
 	);
 }

@@ -28,6 +28,7 @@ type TReportModalProps = {
 	setExpenseAdded: (v: boolean) => void;
 	setExpenseEdited: (v: boolean) => void;
 	item?: TExpenseItem;
+	setItem: (v: React.SetStateAction<TExpenseItem | undefined>) => void;
 };
 
 const ReportModal: FC<TReportModalProps> = ({
@@ -39,6 +40,7 @@ const ReportModal: FC<TReportModalProps> = ({
 	setExpenseAdded,
 	setExpenseEdited,
 	item: expense,
+	setItem,
 }) => {
 	const [name, setName] = useState(expense?.expense || '');
 	const [price, setPrice] = useState(expense?.amount || '');
@@ -59,7 +61,7 @@ const ReportModal: FC<TReportModalProps> = ({
 				: item
 		);
 		setExpenseArr(editedExpenseArr);
-
+		setItem(undefined);
 		setExpenseEdited(true);
 		handleClose();
 	};
