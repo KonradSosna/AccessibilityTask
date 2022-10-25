@@ -183,7 +183,6 @@ function Claimreport({ isMobile }: { isMobile: boolean }) {
 					onClose={() => setConfirmReport(false)}
 					severity="success"
 					sx={{ width: '100%' }}
-					role="status"
 				>
 					Report Subbmitted!
 				</Alert>

@@ -144,7 +144,6 @@ const ExpenseReport: FC<TExpenseReportProps> = ({
 					onClose={() => setExpenseAdded(false)}
 					severity="success"
 					sx={{ width: '100%' }}
-					role="status"
 					aria-live="polite"
 				>
 					New expense added!
@@ -160,7 +159,6 @@ const ExpenseReport: FC<TExpenseReportProps> = ({
 					onClose={() => setExpenseDeleted(false)}
 					severity="success"
 					sx={{ width: '100%' }}
-					role="status"
 				>
 					Expense deleted
 				</Alert>
