@@ -173,25 +173,23 @@ function Claimreport({ isMobile }: { isMobile: boolean }) {
 				</Grid>
 			</Grid>
 
-			{confirmReport && (
-				<Snackbar
-					open={confirmReport}
-					autoHideDuration={6000}
+			<Snackbar
+				open={confirmReport}
+				autoHideDuration={6000}
+				onClose={() => setConfirmReport(false)}
+				role="status"
+				aria-live="polite"
+			>
+				<Alert
 					onClose={() => setConfirmReport(false)}
-					role="alert"
+					severity="success"
+					sx={{ width: '100%' }}
+					role="status"
 					aria-live="polite"
 				>
-					<Alert
-						onClose={() => setConfirmReport(false)}
-						severity="success"
-						sx={{ width: '100%' }}
-						role="alert"
-						aria-live="polite"
-					>
-						Report Subbmitted!
-					</Alert>
-				</Snackbar>
-			)}
+					Report Subbmitted!
+				</Alert>
+			</Snackbar>
 		</Container>
 	);
 }

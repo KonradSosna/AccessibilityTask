@@ -133,44 +133,40 @@ const ExpenseReport: FC<TExpenseReportProps> = ({
 				/>
 			)}
 
-			{expenseAdded && (
-				<Snackbar
-					open={expenseAdded}
-					autoHideDuration={6000}
+			<Snackbar
+				open={expenseAdded}
+				autoHideDuration={6000}
+				onClose={() => setExpenseAdded(false)}
+				role="status"
+				aria-live="polite"
+			>
+				<Alert
 					onClose={() => setExpenseAdded(false)}
-					role="alert"
+					severity="success"
+					sx={{ width: '100%' }}
+					role="status"
 					aria-live="polite"
 				>
-					<Alert
-						onClose={() => setExpenseAdded(false)}
-						severity="success"
-						sx={{ width: '100%' }}
-						role="alert"
-						aria-live="polite"
-					>
-						New expense added!
-					</Alert>
-				</Snackbar>
-			)}
-			{expenseDeleted && (
-				<Snackbar
-					open={expenseDeleted}
-					autoHideDuration={6000}
+					New expense added!
+				</Alert>
+			</Snackbar>
+			<Snackbar
+				open={expenseDeleted}
+				autoHideDuration={6000}
+				onClose={() => setExpenseDeleted(false)}
+				role="status"
+				aria-live="polite"
+			>
+				<Alert
 					onClose={() => setExpenseDeleted(false)}
-					role="alert"
+					severity="success"
+					sx={{ width: '100%' }}
+					role="status"
 					aria-live="polite"
 				>
-					<Alert
-						onClose={() => setExpenseDeleted(false)}
-						severity="success"
-						sx={{ width: '100%' }}
-						role="alert"
-						aria-live="polite"
-					>
-						Expense deleted
-					</Alert>
-				</Snackbar>
-			)}
+					Expense deleted
+				</Alert>
+			</Snackbar>
 
 			<Grid
 				container
