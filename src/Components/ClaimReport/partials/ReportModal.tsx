@@ -26,6 +26,8 @@ type TReportModalProps = {
 	open: boolean;
 	handleClose: () => void;
 	setExpenseAdded: (v: boolean) => void;
+	setExpenseEdited: (v: boolean) => void;
+	item?: TExpenseItem;
 };
 
 const ReportModal: FC<TReportModalProps> = ({
@@ -35,9 +37,11 @@ const ReportModal: FC<TReportModalProps> = ({
 	open,
 	handleClose,
 	setExpenseAdded,
+	setExpenseEdited,
+	item: expense,
 }) => {
-	const [name, setName] = useState('');
-	const [price, setPrice] = useState('');
+	const [name, setName] = useState(expense?.expense || '');
+	const [price, setPrice] = useState(expense?.amount || '');
 
 	const handleAdd = () => {
 		setExpenseArr((prev) => [
@@ -45,6 +49,18 @@ const ReportModal: FC<TReportModalProps> = ({
 			{ id: expenseArr.length + 1, expense: name, amount: price },
 		]);
 		setExpenseAdded(true);
+		handleClose();
+	};
+
+	const handleEdit = () => {
+		const editedExpenseArr = expenseArr.map((item) =>
+			item.id === expense?.id
+				? { id: item.id, expense: name, amount: price }
+				: item
+		);
+		setExpenseArr(editedExpenseArr);
+
+		setExpenseEdited(true);
 		handleClose();
 	};
 
@@ -132,7 +148,7 @@ const ReportModal: FC<TReportModalProps> = ({
 						/>
 						<FormButton
 							text={edit ? 'save' : 'add'}
-							onClick={handleAdd}
+							onClick={edit ? handleEdit : handleAdd}
 							disable={!name || !price}
 						/>
 					</Grid>

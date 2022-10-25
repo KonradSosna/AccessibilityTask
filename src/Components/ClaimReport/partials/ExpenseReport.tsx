@@ -30,6 +30,8 @@ const ExpenseReport: FC<TExpenseReportProps> = ({
 	const [edit, setEdit] = useState(false);
 	const [expenseAdded, setExpenseAdded] = useState(false);
 	const [expenseDeleted, setExpenseDeleted] = useState(false);
+	const [expenseEdited, setExpenseEdited] = useState(false);
+	const [item, setItem] = useState<TExpenseItem | undefined>();
 
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => {
@@ -47,7 +49,8 @@ const ExpenseReport: FC<TExpenseReportProps> = ({
 		setExpenseDeleted(true);
 	};
 
-	const handleEdit = (id: string) => {
+	const handleEdit = (expense: TExpenseItem) => {
+		setItem(expense);
 		setEdit(true);
 		setOpen(true);
 	};
@@ -89,7 +92,7 @@ const ExpenseReport: FC<TExpenseReportProps> = ({
 									/>
 									<ExpenseButton
 										icon={<ModeIcon />}
-										onClick={() => handleEdit(expense.id)}
+										onClick={() => handleEdit(expense)}
 										ariaLabel={`edit-expense-${expense.id}`}
 									/>
 								</Grid>
@@ -130,6 +133,8 @@ const ExpenseReport: FC<TExpenseReportProps> = ({
 					aria-labelledby="modal-modal-title"
 					aria-describedby="modal-modal-description"
 					setExpenseAdded={setExpenseAdded}
+					setExpenseEdited={setExpenseEdited}
+					item={item}
 				/>
 			)}
 
@@ -161,6 +166,22 @@ const ExpenseReport: FC<TExpenseReportProps> = ({
 					sx={{ width: '100%' }}
 				>
 					Expense deleted
+				</Alert>
+			</Snackbar>
+			<Snackbar
+				open={expenseEdited}
+				autoHideDuration={6000}
+				onClose={() => setExpenseAdded(false)}
+				role="status"
+				aria-live="polite"
+			>
+				<Alert
+					onClose={() => setExpenseEdited(false)}
+					severity="success"
+					sx={{ width: '100%' }}
+					aria-live="polite"
+				>
+					Expense edited
 				</Alert>
 			</Snackbar>
 
