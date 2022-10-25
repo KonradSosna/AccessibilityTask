@@ -92,6 +92,7 @@ function Claimreport({ isMobile }: { isMobile: boolean }) {
 	};
 
 	const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
+		console.log(newValue);
 		if (newValue > value)
 			trigger().then((isValid: boolean) => isValid && setValue(newValue));
 		else setValue(newValue);
@@ -177,12 +178,13 @@ function Claimreport({ isMobile }: { isMobile: boolean }) {
 				open={confirmReport}
 				autoHideDuration={6000}
 				onClose={() => setConfirmReport(false)}
-				role="status"
+				aria-live="polite"
 			>
 				<Alert
 					onClose={() => setConfirmReport(false)}
 					severity="success"
 					sx={{ width: '100%' }}
+					role="status"
 				>
 					Report Subbmitted!
 				</Alert>
