@@ -85,12 +85,12 @@ const ExpenseReport: FC<TExpenseReportProps> = ({
 									<ExpenseButton
 										icon={<DeleteOutlineIcon />}
 										onClick={() => handleDelete(expense.id)}
-										ariaLabel={`delete-item-${expense.id}`}
+										ariaLabel={`delete-expense-${expense.id}`}
 									/>
 									<ExpenseButton
 										icon={<ModeIcon />}
 										onClick={() => handleEdit(expense.id)}
-										ariaLabel={`edit-item-${expense.id}`}
+										ariaLabel={`edit-expense-${expense.id}`}
 									/>
 								</Grid>
 							</Grid>
