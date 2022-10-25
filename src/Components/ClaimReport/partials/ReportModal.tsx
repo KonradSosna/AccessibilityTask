@@ -22,6 +22,7 @@ const modalStyle = {
 type TReportModalProps = {
 	expenseArr: TExpenseItem[];
 	setExpenseArr: (value: React.SetStateAction<any[]>) => void;
+	edit: boolean;
 	open: boolean;
 	handleClose: () => void;
 	setExpenseAdded: (v: boolean) => void;
@@ -30,6 +31,7 @@ type TReportModalProps = {
 const ReportModal: FC<TReportModalProps> = ({
 	expenseArr,
 	setExpenseArr,
+	edit,
 	open,
 	handleClose,
 	setExpenseAdded,
@@ -46,9 +48,25 @@ const ReportModal: FC<TReportModalProps> = ({
 		handleClose();
 	};
 
+	// const handleEdit = () => {
+
+	// 	const newArr = expenseArr.map((item) => {
+	// 		if (item.id === edit) {
+	// 			return { ...item, expense: name, amount: price };
+	// 		}
+
+	// 	setExpenseArr((prev) => [
+	// 		...prev,
+	// 		{ id: expenseArr.length + 1, expense: name, amount: price },
+	// 	]);
+	// 	setExpenseAdded(true);
+	// 	handleClose();
+	// };
+
 	return (
 		<>
 			<Modal
+				role="dialog"
 				open={open}
 				onClose={handleClose}
 				aria-label="modal-modal-title"
@@ -70,7 +88,7 @@ const ReportModal: FC<TReportModalProps> = ({
 							component="h2"
 							fontWeight={600}
 						>
-							Expense
+							{edit ? 'Edit Expense' : 'Expense'}
 						</Typography>
 					</Grid>
 
@@ -125,7 +143,7 @@ const ReportModal: FC<TReportModalProps> = ({
 							onClick={handleClose}
 						/>
 						<FormButton
-							text="add"
+							text={edit ? 'save' : 'add'}
 							onClick={handleAdd}
 							disable={!name || !price}
 						/>

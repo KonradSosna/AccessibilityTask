@@ -8,7 +8,6 @@ import {
 import { Dispatch, FC } from 'react';
 import { useForm } from 'react-hook-form';
 import FormButton from '../../LandingPage/Partials/Button';
-import { Styledlabel } from './PersonalDetails';
 
 type TIncidentDetailsProps = {
 	trigger: any;
@@ -30,7 +29,9 @@ const IncidentDetails: FC<TIncidentDetailsProps> = ({
 			<Grid item>
 				<Grid container direction="column" spacing={1}>
 					<Grid item>
-						<Styledlabel htmlFor="travelPurpose">Purpose of Travel</Styledlabel>
+						<legend style={{ fontSize: '18px', fontWeight: 600 }}>
+							Purpose of Travel
+						</legend>
 					</Grid>
 					<Grid item>
 						<RadioGroup
@@ -79,6 +80,7 @@ const IncidentDetails: FC<TIncidentDetailsProps> = ({
 							label="Country"
 							error={!!errors.country}
 							helperText={errors.country && 'Country  is required'}
+							FormHelperTextProps={{ 'aria-live': 'polite', role: 'alert' }}
 						/>
 					</Grid>
 				</Grid>
@@ -95,6 +97,7 @@ const IncidentDetails: FC<TIncidentDetailsProps> = ({
 							label="Address"
 							error={!!errors.address}
 							helperText={errors.address && 'Address  is required'}
+							FormHelperTextProps={{ 'aria-live': 'polite', role: 'alert' }}
 						/>
 					</Grid>
 				</Grid>
@@ -113,6 +116,7 @@ const IncidentDetails: FC<TIncidentDetailsProps> = ({
 					label="Date"
 					error={!!errors.date}
 					helperText={errors.date && 'Date  is required'}
+					FormHelperTextProps={{ 'aria-live': 'polite', role: 'alert' }}
 				/>
 			</Grid>
 
@@ -129,6 +133,7 @@ const IncidentDetails: FC<TIncidentDetailsProps> = ({
 						label="Description"
 						error={!!errors.description}
 						helperText={errors.description && 'Description  is required'}
+						FormHelperTextProps={{ 'aria-live': 'polite', role: 'alert' }}
 					/>
 				</Grid>
 			</Grid>

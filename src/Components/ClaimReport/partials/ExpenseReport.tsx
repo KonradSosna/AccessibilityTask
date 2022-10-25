@@ -20,7 +20,6 @@ type TExpenseReportProps = {
 export type TExpenseItem = { id: string; expense: string; amount: string };
 
 const ExpenseReport: FC<TExpenseReportProps> = ({
-	register,
 	setValue,
 	expenseArr,
 	setExpenseArr,
@@ -28,12 +27,14 @@ const ExpenseReport: FC<TExpenseReportProps> = ({
 	isMobile,
 }) => {
 	const [open, setOpen] = useState(false);
+	const [edit, setEdit] = useState(false);
 	const [expenseAdded, setExpenseAdded] = useState(false);
 	const [expenseDeleted, setExpenseDeleted] = useState(false);
 
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => {
 		setOpen(false);
+		setEdit(false);
 	};
 
 	useEffect(() => {
@@ -44,6 +45,11 @@ const ExpenseReport: FC<TExpenseReportProps> = ({
 		const newArr = expenseArr.filter((item) => item.id !== id);
 		setExpenseArr(newArr);
 		setExpenseDeleted(true);
+	};
+
+	const handleEdit = (id: string) => {
+		setEdit(true);
+		setOpen(true);
 	};
 
 	return (
@@ -83,6 +89,7 @@ const ExpenseReport: FC<TExpenseReportProps> = ({
 									/>
 									<ExpenseButton
 										icon={<ModeIcon />}
+										onClick={() => handleEdit(expense.id)}
 										ariaLabel={`edit-item-${expense.id}`}
 									/>
 								</Grid>
@@ -117,6 +124,7 @@ const ExpenseReport: FC<TExpenseReportProps> = ({
 				<ReportModal
 					expenseArr={expenseArr}
 					setExpenseArr={setExpenseArr}
+					edit={edit}
 					open={open}
 					handleClose={handleClose}
 					aria-labelledby="modal-modal-title"
@@ -131,11 +139,14 @@ const ExpenseReport: FC<TExpenseReportProps> = ({
 					autoHideDuration={6000}
 					onClose={() => setExpenseAdded(false)}
 					role="alert"
+					aria-live="polite"
 				>
 					<Alert
 						onClose={() => setExpenseAdded(false)}
 						severity="success"
 						sx={{ width: '100%' }}
+						role="alert"
+						aria-live="polite"
 					>
 						New expense added!
 					</Alert>
@@ -147,11 +158,14 @@ const ExpenseReport: FC<TExpenseReportProps> = ({
 					autoHideDuration={6000}
 					onClose={() => setExpenseDeleted(false)}
 					role="alert"
+					aria-live="polite"
 				>
 					<Alert
 						onClose={() => setExpenseDeleted(false)}
 						severity="success"
 						sx={{ width: '100%' }}
+						role="alert"
+						aria-live="polite"
 					>
 						Expense deleted
 					</Alert>

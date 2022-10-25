@@ -5,7 +5,7 @@ import { FC, memo } from 'react';
 type TButtonProps = {
 	text: string;
 	variant?: 'contained' | 'outlined' | 'text';
-	sx?: CSSProperties;
+	sx?: CSSProperties | any;
 	onClick?: (v: any) => void;
 	disable?: boolean;
 	loading?: boolean;
@@ -38,6 +38,7 @@ const FormButton: FC<TButtonProps> = ({
 
 				'&:hover': {
 					backgroundColor: 'gray',
+					color: 'white',
 				},
 			}}
 		>

@@ -91,7 +91,7 @@ function Claimreport({ isMobile }: { isMobile: boolean }) {
 		}, 2000);
 	};
 
-	const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+	const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
 		if (newValue > value)
 			trigger().then((isValid: boolean) => isValid && setValue(newValue));
 		else setValue(newValue);
@@ -135,13 +135,7 @@ function Claimreport({ isMobile }: { isMobile: boolean }) {
 						>
 							<StyledTab label="Step 1 - Personal Details" {...a11yProps(0)} />
 							<StyledTab label="Step 2 - Incident Details" {...a11yProps(1)} />
-							<StyledTab
-								label="Step 3 - Expense Report"
-								// onClick={() =>
-								// 	trigger().then((isValid: boolean) => isValid && setValue(1))
-								// }
-								{...a11yProps(2)}
-							/>
+							<StyledTab label="Step 3 - Expense Report" {...a11yProps(2)} />
 						</Tabs>
 					</Box>
 				</Grid>
@@ -184,11 +178,15 @@ function Claimreport({ isMobile }: { isMobile: boolean }) {
 					open={confirmReport}
 					autoHideDuration={6000}
 					onClose={() => setConfirmReport(false)}
+					role="alert"
+					aria-live="polite"
 				>
 					<Alert
 						onClose={() => setConfirmReport(false)}
 						severity="success"
 						sx={{ width: '100%' }}
+						role="alert"
+						aria-live="polite"
 					>
 						Report Subbmitted!
 					</Alert>

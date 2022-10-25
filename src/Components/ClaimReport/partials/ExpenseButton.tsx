@@ -29,6 +29,7 @@ const ExpenseButton: FC<TButtonProps> = ({
 
 					'&:hover': {
 						backgroundColor: 'gray',
+						color: 'white',
 					},
 				}}
 			>
