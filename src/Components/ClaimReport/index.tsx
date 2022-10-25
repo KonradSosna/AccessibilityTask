@@ -178,14 +178,12 @@ function Claimreport({ isMobile }: { isMobile: boolean }) {
 				autoHideDuration={6000}
 				onClose={() => setConfirmReport(false)}
 				role="status"
-				aria-live="polite"
 			>
 				<Alert
 					onClose={() => setConfirmReport(false)}
 					severity="success"
 					sx={{ width: '100%' }}
 					role="status"
-					aria-live="polite"
 				>
 					Report Subbmitted!
 				</Alert>

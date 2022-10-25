@@ -155,14 +155,12 @@ const ExpenseReport: FC<TExpenseReportProps> = ({
 				autoHideDuration={6000}
 				onClose={() => setExpenseDeleted(false)}
 				role="status"
-				aria-live="polite"
 			>
 				<Alert
 					onClose={() => setExpenseDeleted(false)}
 					severity="success"
 					sx={{ width: '100%' }}
 					role="status"
-					aria-live="polite"
 				>
 					Expense deleted
 				</Alert>
