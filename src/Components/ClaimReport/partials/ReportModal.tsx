@@ -48,31 +48,20 @@ const ReportModal: FC<TReportModalProps> = ({
 		handleClose();
 	};
 
-	// const handleEdit = () => {
-
-	// 	const newArr = expenseArr.map((item) => {
-	// 		if (item.id === edit) {
-	// 			return { ...item, expense: name, amount: price };
-	// 		}
-
-	// 	setExpenseArr((prev) => [
-	// 		...prev,
-	// 		{ id: expenseArr.length + 1, expense: name, amount: price },
-	// 	]);
-	// 	setExpenseAdded(true);
-	// 	handleClose();
-	// };
-
 	return (
 		<>
 			<Modal
-				role="dialog"
 				open={open}
 				onClose={handleClose}
-				aria-label="modal-modal-title"
 				sx={{ backdropFilter: 'blur(5px)' }}
 			>
-				<Grid container direction="column" sx={modalStyle}>
+				<Grid
+					container
+					direction="column"
+					sx={modalStyle}
+					role="dialog"
+					aria-describedby="modal-add-expense"
+				>
 					<Grid item width="100%" justifyContent="right" display="flex">
 						<ExpenseButton
 							ariaLabel="close modal"
@@ -84,7 +73,6 @@ const ReportModal: FC<TReportModalProps> = ({
 					<Grid item display="flex" justifyContent="center">
 						<Typography
 							id="expense-modal-title"
-							variant="h4"
 							component="h2"
 							fontWeight={600}
 						>
