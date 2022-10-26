@@ -69,18 +69,12 @@ const ReportModal: FC<TReportModalProps> = ({
 	return (
 		<>
 			<Modal
+				role="modal"
 				open={open}
 				onClose={handleClose}
 				sx={{ backdropFilter: 'blur(5px)' }}
-				role="dialog"
 			>
-				<Grid
-					container
-					direction="column"
-					sx={modalStyle}
-					// role="dialog"
-					// aria-describedby="modal-add-expense"
-				>
+				<Grid container direction="column" sx={modalStyle}>
 					<Grid item width="100%" justifyContent="right" display="flex">
 						<ExpenseButton
 							ariaLabel="close modal"
@@ -92,6 +86,7 @@ const ReportModal: FC<TReportModalProps> = ({
 					<Grid item display="flex" justifyContent="center">
 						<Typography
 							id="expense-modal-title"
+							role="presentation"
 							component="h2"
 							fontWeight={600}
 						>
@@ -107,7 +102,6 @@ const ReportModal: FC<TReportModalProps> = ({
 					>
 						<Grid item>
 							<TextField
-								title="expenseName"
 								type="text"
 								value={name}
 								style={{ width: '100%', height: '40px' }}
@@ -125,7 +119,6 @@ const ReportModal: FC<TReportModalProps> = ({
 					>
 						<Grid item>
 							<TextField
-								title="expensePrice"
 								type="number"
 								value={price}
 								style={{ width: '100%', height: '40px' }}
